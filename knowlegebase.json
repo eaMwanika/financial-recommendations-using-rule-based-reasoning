@@ -1,0 +1,471 @@
+{
+  "metadata": {
+    "debt_ratio_limit": 0.30,
+    "emergency_months": 6,
+
+    "budget_model": {
+      "needs": 0.50,
+      "wants": 0.30,
+      "savings": 0.10,
+      "investment": 0.10
+    }
+
+  },
+
+  "inference_rules": [
+
+    {
+      "id": "IR1",
+      "category": "Income",
+      "conditions": [
+        {
+          "field": "total_income",
+          "operator": ">",
+          "value": 0
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "has_income",
+        "value": true
+      }
+    },
+
+    {
+      "id": "IR2",
+      "category": "Income",
+      "conditions": [
+        {
+          "field": "total_income",
+          "operator": "<=",
+          "value": 0
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "has_income",
+        "value": false
+      }
+    },
+
+    {
+      "id": "IR3",
+      "category": "Budget",
+      "conditions": [
+        {
+          "field": "expenses",
+          "operator": "<=",
+          "field_compare": "recommended_expenses"
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "within_budget",
+        "value": true
+      }
+    },
+
+    {
+      "id": "IR4",
+      "category": "Budget",
+      "conditions": [
+        {
+          "field": "expenses",
+          "operator": ">",
+          "field_compare": "recommended_expenses"
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "within_budget",
+        "value": false
+      }
+    },
+
+    {
+      "id": "IR5",
+      "category": "Emergency Fund",
+      "conditions": [
+        {
+          "field": "current_emergency_fund",
+          "operator": ">=",
+          "field_compare": "emergency_fund_target"
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "emergency_fund_sufficient",
+        "value": true
+      }
+    },
+
+    {
+      "id": "IR6",
+      "category": "Emergency Fund",
+      "conditions": [
+        {
+          "field": "current_emergency_fund",
+          "operator": "<",
+          "field_compare": "emergency_fund_target"
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "emergency_fund_sufficient",
+        "value": false
+      }
+    },
+
+    {
+      "id": "IR7",
+      "category": "Debt",
+      "conditions": [
+        {
+          "field": "debt_to_income_ratio",
+          "operator": "<=",
+          "value": 0.30
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "debt_manageable",
+        "value": true
+      }
+    },
+
+    {
+      "id": "IR8",
+      "category": "Debt",
+      "conditions": [
+        {
+          "field": "debt_to_income_ratio",
+          "operator": ">",
+          "value": 0.30
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "debt_manageable",
+        "value": false
+      }
+    },
+
+    {
+      "id": "IR9",
+      "category": "Investment Eligibility",
+      "conditions": [
+        {
+          "field": "emergency_fund_sufficient",
+          "operator": "==",
+          "value": true
+        },
+        {
+          "field": "debt_manageable",
+          "operator": "==",
+          "value": true
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "eligible_to_invest",
+        "value": true
+      }
+    },
+
+    {
+      "id": "IR10",
+      "category": "Investment Eligibility",
+      "conditions": [
+        {
+          "field": "emergency_fund_sufficient",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "eligible_to_invest",
+        "value": false
+      }
+    },
+
+    {
+      "id": "IR11",
+      "category": "Investment Eligibility",
+      "conditions": [
+        {
+          "field": "debt_manageable",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "action": {
+        "type": "infer",
+        "fact": "eligible_to_invest",
+        "value": false
+      }
+    }
+
+  ],
+
+  "recommendation_rules": [
+
+    {
+      "id": "RR1",
+      "category": "Budget",
+      "title": "Budget Warning",
+      "conditions": [
+        {
+          "field": "within_budget",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Reduce unnecessary spending to stay within your recommended budget."
+      }
+    },
+
+    {
+      "id": "RR2",
+      "category": "Budget",
+      "title": "Budget Status",
+      "conditions": [
+        {
+          "field": "within_budget",
+          "operator": "==",
+          "value": true
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Your spending is within the recommended budget."
+      }
+    },
+
+    {
+      "id": "RR3",
+      "category": "Emergency Fund",
+      "title": "Build Emergency Fund",
+      "conditions": [
+        {
+          "field": "emergency_fund_sufficient",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Continue building your emergency fund before investing."
+      }
+    },
+
+    {
+      "id": "RR4",
+      "category": "Emergency Fund",
+      "title": "Redirect Investments",
+      "conditions": [
+        {
+          "field": "emergency_fund_sufficient",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Redirect your planned investment allocation into your emergency fund until the target is reached."
+      }
+    },
+
+    {
+      "id": "RR5",
+      "category": "Emergency Fund",
+      "title": "Emergency Fund Ready",
+      "conditions": [
+        {
+          "field": "emergency_fund_sufficient",
+          "operator": "==",
+          "value": true
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Your emergency fund is sufficient."
+      }
+    },
+
+    {
+      "id": "RR6",
+      "category": "Debt",
+      "title": "Debt Repayment",
+      "conditions": [
+        {
+          "field": "debt_manageable",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Prioritize debt repayment before making new investments."
+      }
+    },
+
+    {
+      "id": "RR7",
+      "category": "Debt",
+      "title": "Debt Timeline",
+      "conditions": [
+        {
+          "field": "debt_manageable",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Aim to clear your debt within 24 months."
+      }
+    },
+
+    {
+      "id": "RR8",
+      "category": "Debt",
+      "title": "Debt Status",
+      "conditions": [
+        {
+          "field": "debt_manageable",
+          "operator": "==",
+          "value": true
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Your debt level is manageable."
+      }
+    },
+
+    {
+      "id": "RR9",
+      "category": "Debt",
+      "title": "Debt Goal",
+      "conditions": [
+        {
+          "field": "debt_manageable",
+          "operator": "==",
+          "value": true
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Aim to clear your debt within 12 months."
+      }
+    },
+
+    {
+      "id": "RR10",
+      "category": "Investment",
+      "title": "Low Risk Investment",
+      "conditions": [
+        {
+          "field": "eligible_to_invest",
+          "operator": "==",
+          "value": true
+        },
+        {
+          "field": "risk_preference",
+          "operator": "==",
+          "value": "Low"
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Consider investing in a Money Market Fund (MMF)."
+      }
+    },
+
+    {
+      "id": "RR11",
+      "category": "Investment",
+      "title": "Medium Risk Investment",
+      "conditions": [
+        {
+          "field": "eligible_to_invest",
+          "operator": "==",
+          "value": true
+        },
+        {
+          "field": "risk_preference",
+          "operator": "==",
+          "value": "Medium"
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Consider Treasury Bills, Treasury Bonds, or ETFs."
+      }
+    },
+
+    {
+      "id": "RR12",
+      "category": "Investment",
+      "title": "High Risk Investment",
+      "conditions": [
+        {
+          "field": "eligible_to_invest",
+          "operator": "==",
+          "value": true
+        },
+        {
+          "field": "risk_preference",
+          "operator": "==",
+          "value": "High"
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Consider diversified stocks, equity mutual funds, or REITs."
+      }
+    },
+
+    {
+      "id": "RR13",
+      "category": "Dividends",
+      "title": "Dividend Income",
+      "conditions": [
+        {
+          "field": "dividends_received",
+          "operator": ">",
+          "value": 0
+        }
+      ],
+      "action": {
+        "type": "recommend",
+        "message": "Your dividend income has increased your monthly cash flow. Consider including it in your lon-term investment pan."
+      }
+    },
+    {
+  "id": "RR14",
+  "category": "Dividends",
+  "title": "Dividend Income",
+  "conditions": [
+    {
+      "field": "dividends_received",
+      "operator": "==",
+      "value": 0
+    },
+    {
+      "field": "eligible_to_invest",
+      "operator": "==",
+      "value": true
+    }
+  ],
+  "action": {
+    "type": "recommend",
+    "message": "Consider investments that can generate dividend income."
+  }
+}
+
+  ]
+}
