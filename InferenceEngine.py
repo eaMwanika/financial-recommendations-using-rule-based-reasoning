@@ -119,7 +119,7 @@ class InferenceEngine:
         if facts.get("debt_manageable"):
             score += 25
         
-        if facts.get("emegency_fund_sufficient"):
+        if facts.get("emergency_fund_sufficient"):
             score += 25
         if facts.get("eligible_to_invest"):
             score += 25
