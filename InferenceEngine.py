@@ -1,10 +1,10 @@
 import operator
 
 class InferenceEngine:
-    """
-    Implements forward chaining using the rules
-    stored in the knowledge base.
-    """
+    
+    #Implements forward chaining using the rules
+    #stored in the knowledge base.
+    
 
     OPERATORS = {
         ">": operator.gt,
@@ -84,13 +84,14 @@ class InferenceEngine:
 
     
     # Generate Recommendations
-    
 
     def recommend(self, facts):
 
         recommendations = []
 
         for rule in self.kb.get_recommendation_rules():
+
+            print(f"Checking {rule['id']}")
 
             if self.evaluate_rule(rule, facts):
 
@@ -105,6 +106,44 @@ class InferenceEngine:
                 })
 
         return recommendations
+    
+    # Scoring Method
+    
+    def calculate_financial_score(self, facts):
+
+        score = 0
+
+        if facts.get("within_budget"):
+            score += 25
+        
+        if facts.get("debt_manageable"):
+            score += 25
+        
+        if facts.get("emegency_fund_sufficient"):
+            score += 25
+        if facts.get("eligible_to_invest"):
+            score += 25
+
+        return score
+    
+    # Assessment Method
+    def get_assessment(self, score):
+
+        if score >=85:
+            return "Excellent Financial Health"
+        
+        elif score >=70:
+            return "Financial Stable"
+        
+        elif score >=50:
+            return "DEveloping Financial Health"
+        
+        else:
+            return "Financial Improvement Needed"
+
+
+
+
 
     
     # Complete Analysis
@@ -114,12 +153,17 @@ class InferenceEngine:
 
         inferred_facts = self.infer(facts)
 
+        score = self.calculate_financial_score(inferred_facts)
+            
+        assessment = self.get_assessment(score)
+        
         recommendations = self.recommend(inferred_facts)
 
         return {
 
             "facts": inferred_facts,
-
+            "financial_score": score,
+            "assessment": assessment,
             "recommendations": recommendations
 
         }
