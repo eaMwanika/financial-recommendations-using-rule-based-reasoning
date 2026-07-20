@@ -1,16 +1,16 @@
 class FinancialCalculator:
-    """
-    Calculates all derived financial facts.
-    """
+    
+     #Calculates all derived financial facts.
+
 
     def __init__(self, knowledge_base):
         self.kb = knowledge_base
 
     def calculate(self, facts):
-        """
-        Takes user facts and returns the same dictionary
-        with additional calculated values.
-        """
+        
+        #Takes user facts and returns the same dictionary
+        #with additional calculated values.
+        
 
         results = facts.copy()
 
@@ -64,12 +64,14 @@ class FinancialCalculator:
         if total_income > 0:
 
             debt_ratio = (
-                facts["total_debt"] / total_income
+                facts["monthly_debt_payment"] / total_income
             )
 
         else:
 
             debt_ratio = 0
+        
+       
 
     
         # Save Calculated Facts
@@ -80,7 +82,7 @@ class FinancialCalculator:
         results["recommended_expenses"] = recommended_expenses
 
         results["recommended_wants"] = recommended_wants
-
+        
         results["recommended_savings"] = recommended_savings
 
         results["recommended_investment"] = (
@@ -92,5 +94,7 @@ class FinancialCalculator:
         )
 
         results["debt_to_income_ratio"] = debt_ratio
+        
+        
 
         return results
