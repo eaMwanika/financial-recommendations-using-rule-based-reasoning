@@ -107,6 +107,118 @@
 }
 
 
+},
+"action_plans": {
+    "reduce_debt": {
+
+    "priority": 1,
+
+    "title": "Debt Reduction Plan",
+
+    "objective": "Lower your monthly debt burden and improve financial flexibility.",
+
+    "steps": [
+
+        "Pay high-interest debt before lower-interest debt.",
+
+        "Avoid taking on new unnecessary debt.",
+
+        "Use any additional income to make extra debt repayments.",
+
+        "Review your debt-to-income ratio every month."
+
+    ]
+
+},
+"build_emergency_fund": {
+
+    "priority": 2,
+
+    "title": "Emergency Savings Plan",
+
+    "objective": "Build sufficient savings to cover unexpected financial emergencies.",
+
+    "steps": [
+
+        "Set a monthly savings target.",
+
+        "Keep emergency savings in an easily accessible account.",
+
+        "Aim to save at least three to six months of essential expenses.",
+
+        "Avoid using emergency savings for non-emergency spending."
+
+    ]
+
+},
+"improve_budget": {
+
+    "priority": 3,
+
+    "title": "Budget Improvement Plan",
+
+    "objective": "Improve spending habits and increase financial stability.",
+
+    "steps": [
+
+        "Track all monthly expenses.",
+
+        "Reduce unnecessary lifestyle spending.",
+
+        "Follow the 50:30:10:10 budgeting model.",
+
+        "Review your budget at the end of each month."
+
+    ]
+
+},
+"increase_savings": {
+
+    "priority": 4,
+
+    "title": "Savings Growth Plan",
+
+    "objective": "Increase the amount of money saved each month.",
+
+    "steps": [
+
+        "Automate monthly savings transfers.",
+
+        "Save before spending.",
+
+        "Increase savings whenever income increases.",
+
+        "Review savings progress every month."
+
+    ]
+
+},
+"start_investing": {
+
+    "priority": 5,
+
+    "title": "Investment Readiness Plan",
+
+    "objective": "Begin building long-term wealth through appropriate investments.",
+
+    "steps": [
+
+        "Maintain a healthy emergency fund.",
+
+        "Invest consistently instead of occasionally.",
+
+        "Choose investments that match your risk profile.",
+
+        "Review your investment portfolio periodically."
+
+    ]
+
+}
+
+
+
+
+
 
 }
 
