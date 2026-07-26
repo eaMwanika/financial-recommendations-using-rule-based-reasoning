@@ -215,9 +215,78 @@
 
 }
 
+},
 
+"investment_guidance": {
+    "conservative": {
 
+    "title": "Conservative Investor",
 
+    "description": "Focus on preserving capital while earning steady, lower-risk returns.",
+
+    "suitable_products": [
+
+        "Money Market Funds",
+
+        "Treasury Bills",
+
+        "Treasury Bonds",
+
+        "Fixed Deposit Accounts"
+
+    ],
+
+    "investment_goal": "Capital preservation and stable income.",
+
+    "risk_level": "Low"
+
+},
+"moderate": {
+
+    "title": "Moderate Investor",
+
+    "description": "Balance investment growth with acceptable levels of risk.",
+
+    "suitable_products": [
+
+        "Balanced Mutual Funds",
+
+        "Government Bonds",
+
+        "Corporate Bonds",
+
+        "Diversified Unit Trusts"
+
+    ],
+
+    "investment_goal": "Balanced growth and income.",
+
+    "risk_level": "Medium"
+
+},
+"aggressive": {
+
+    "title": "Aggressive Investor",
+
+    "description": "Seek long-term capital growth while accepting higher market risk.",
+
+    "suitable_products": [
+
+        "Stocks",
+
+        "Equity Mutual Funds",
+
+        "Exchange Traded Funds (ETFs)",
+
+        "Real Estate Investment Trusts (REITs)"
+
+    ],
+
+    "investment_goal": "Long-term wealth creation.",
+
+    "risk_level": "High"
+
+}
 
 
 }
