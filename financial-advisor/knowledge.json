@@ -1,0 +1,46 @@
+{
+    "system": {
+        "name":"Personal Finance Advisor Expert System",
+        "version":"1.0",
+        "description":"A rule-based expert system for assessing financial health and generating personalized financial recommendations.",
+        "reasoning_method":"Forward Chaining",
+        "knowledge_engineer":"Viona GItonga",
+        "last-updated":"2026-07-26"
+    },
+    "thresholds": {
+
+    "debt": {
+
+        "healthy_ratio": 0.30,
+
+        "warning_ratio": 0.40
+
+    },
+
+    "emergency_fund": {
+
+        "minimum_months": 3,
+
+        "recommended_months": 6
+
+    },
+
+    "budget": {
+
+        "needs": 0.50,
+
+        "wants": 0.30,
+
+        "savings": 0.10,
+
+        "investments": 0.10
+
+    }
+
+}
+
+
+
+
+
+}
