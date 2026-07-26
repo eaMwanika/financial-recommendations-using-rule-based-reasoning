@@ -3,9 +3,7 @@ from pathlib import Path
 
 
 class KnowledgeBase:
-    """
-    Loads and provides access to the knowledge base.
-    """
+   # LOading json
 
     def __init__(self, filename="knowledge.json"):
         self.filename = Path(filename)
@@ -57,5 +55,5 @@ class KnowledgeBase:
     
 
     def reload(self):
-        """Reload the knowledge base from disk."""
+       
         self.data = self.load()

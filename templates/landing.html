@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Personal Finance Advisor</title>
+        
+
+        
+        <!-- Google Fonts -->
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel ="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+        
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+          <!--CSS-->
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+        
+          
+        
+
+    </head>
+    <body>
+        <!--Naviagtion-->
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-wallet"></i>
+        
+                    </div>
+
+                    <div class="logo-text">
+                        <h2>  Finance Advisor</h2>
+                        <span> Expert Financial Advisor</span>
+                    </div>
+                    
+
+                </a>
+                
+                <ul class ="nav-links">
+                    <li>
+                        <a href="#process"> How it Works</a>
+                    </li>
+                    <li>
+                        <a href="#assessment">What we Assess</a>
+                    </li>
+                    <li>
+                        <a href="#budget">Budget Model</a>
+                    </li>
+                </ul>
+
+                <a href="/assessment" class="nav-button">
+                    Start Assessment
+                </a>
+
+
+            </div>
+        </nav>
+
+        <!---Hero SEcction-->
+        <main>
+            <section class="hero">
+                <div class="container hero-content">
+                    <!--Left-->
+                    <div class="hero-left">
+                        <span class="tag"> Financial Health Assessment</span>
+                        <h1>
+                            Know where you stand Financially.
+                        </h1>
+                        <p>
+                            Assese your financial health through a knowledge-based expert system that evaluates
+                            your income, expenses, debt, emergency savings, and investment readiness to deliver personalized recommendations.
+
+                            
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="/assessment" class="primary-btn"> Start Financial Assessment</a>
+
+                        </div>
+
+                        <div class="hero-highlights">
+                            <div>
+                                <i class="fa-solid fa-circle-check"></i>
+                                No registration required
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-clock"></i>
+                                Takes less than 3 minutes
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-brain"></i>
+                                Rule-Based Expert System
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--Right-->
+                    <div class="hero-right">
+                        <div class="dashboard-card">
+                            <div class="dashboard-header">
+                                <h3>Financial Health Summary</h3>
+                                 <span class="status-badge">Healthy</span>
+
+                            </div>
+
+                            <div class="score-section">
+                                <h1>82</h1>
+                                <span>out of 100</span>
+                                <p>Overall Financial Score</p>
+
+                            </div class="summary-list">
+                            <div class="summary-item">
+                                <span>Monthly Income</span>
+                                <strong>KSh 245,000</strong>
+
+                            </div>
+                        
+
+                                <div class="summary-item">
+                                     <span>Debt-to-Income Ratio</span>
+                                      <strong>24%</strong>
+
+                                </div>
+
+                                <div class="summary-item">
+                                     <span>Emergency Fund</span>
+                                      <strong class="success">Ready</strong>
+
+                                </div>
+
+                                <div class="summary-item">
+                                     <span>Investment Status</span>
+                                     <strong class="primary">Eligible</strong>
+
+                                </div>
+
+                            </div>
+
+                            <div class="progress-group">
+                                
+                                <div class="progress-item">
+
+                                    <div class="progress-label">
+                                        <span>Budget Health</span>
+                                        <span>95%</span>
+
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress blue" style="width:95%;"></div>
+
+                                    </div>
+
+                                </div>
+                                <div class="progress-item" >
+                                    <div class="progress-label">
+                                        <span>Emergency Fund</span>
+                                         <span>85%</span>
+                                    </div>
+
+                                    <div  class="progress-bar">
+                                        <div class="progress green" style="width:85%;"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="progress-item">
+                                    <div class="progress-label">
+                                        <span>Investment Readiness</span>
+                                         <span>78%</span>
+                                         
+
+                                    </div>
+                                    
+                
+
+                                <div class="progress-bar">
+                                    <div class="progress teal" style="width:78%;"></div>
+
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                            
+                        
+                </div>
+
+            </section>
+
+        </main>
+        <!--Footer-->
+        <footer class="footer">
+            <div class="container footer-content">
+                <div class="footer-brand">
+                    <h3> Personal Finance Advisor</h3>
+                    <p>
+                        A knowledge-based expert system that helps users asssess their 
+                        financial health and make informed financial decisions.
+                    </p>
+
+                </div>
+                <div class="footer-divider"></div>
+                <div class="footer-bottom">
+                    <p> © 2026 Personal Finance Advisor. All Rights Reserved.</p>
+                    <p>  Built with Python • Flask • JSON Knowledge Base • Forward Chaining</p>
+
+                </div>
+
+
+
+
+        </div>
+
+
+        </footer>
+        
+
+
+    </body>
+
+</html>
