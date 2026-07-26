@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Advisor</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!--  HERO  -->
+
+    <section class="hero">
+
+        <h1>Personal Finance Advisor</h1>
+
+        <p class="subtitle">
+            Make informed financial decisions using a Knowledge-Based Expert System.
+            Our forward-chaining engine evaluates your financial profile and provides
+            personalized recommendations for budgeting, debt management, emergency
+            savings, and investment planning.
+        </p>
+
+    </section>
+
+    <!--INFORMATION CARDS  -->
+
+    <section class="features">
+
+        <div class="feature-card">
+            <h3>Budget Analysis</h3>
+            <p>Evaluates your spending using the 50:30:10:10 budgeting model.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Debt Assessment</h3>
+            <p>Measures your Debt-to-Income ratio and recommends repayment strategies.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Emergency Fund</h3>
+            <p>Checks whether your savings can support six months of expenses.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Investment Guidance</h3>
+            <p>Suggests investment opportunities based on your financial profile.</p>
+        </div>
+
+    </section>
+
+    <!-- BUDGET MODEL  -->
+
+    <section class="budget-box">
+
+        <h2>Budgeting Model</h2>
+
+        <div class="form-grid">
+
+            <div class="feature-card">
+                <h3>50%</h3>
+                <p>Essential Needs</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>30%</h3>
+                <p>Wants</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>10%</h3>
+                <p>Savings</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>10%</h3>
+                <p>Investments</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FORM -->
+
+    <form action="/analyze" method="POST">
+
+        <!-- Income -->
+
+        <div class="form-card">
+
+            <h2>Income Information</h2>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Earned Income (KSh)</label>
+                    <input type="number"
+                           name="earned_income"
+                           placeholder="120000"
+                           min="0"
+                           step="0.01"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Passive Income (KSh)</label>
+                    <input type="number"
+                           name="passive_income"
+                           placeholder="15000"
+                           min="0"
+                           step="0.01"
+                           value="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Dividend Income (KSh)</label>
+                    <input type="number"
+                           name="dividends_received"
+                           placeholder="5000"
+                           min="0"
+                           step="0.01"
+                           value="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Interest from Savings (KSh)</label>
+                    <input type="number"
+                           name="interest_from_savings"
+                           placeholder="1000"
+                           min="0"
+                           step="0.01"
+                           value="0">
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Financial -->
+
+        <div class="form-card">
+
+            <h2>Financial Information</h2>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Monthly Expenses (KSh)</label>
+                    <input type="number"
+                           name="expenses"
+                           placeholder="65000"
+                           min="0"
+                           step="0.01"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Total Outstanding Debt (KSh)</label>
+                    <input type="number"
+                           name="total_debt"
+                           placeholder="80000"
+                           min="0"
+                           step="0.01"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Current Emergency Fund (KSh)</label>
+                    <input type="number"
+                           name="current_emergency_fund"
+                           placeholder="250000"
+                           min="0"
+                           step="0.01"
+                           required>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Investment -->
+
+        <div class="form-card">
+
+            <h2>Investment Preference</h2>
+
+            <div class="form-group">
+
+                <label>Risk Profile</label>
+
+                <select name="risk_preference" required>
+
+                    <option value="" disabled selected>
+                        Select your risk profile
+                    </option>
+
+                    <option value="Risk Averse">
+                        Risk Averse
+                    </option>
+
+                    <option value="Risk Neutral">
+                        Risk Neutral
+                    </option>
+
+                    <option value="Risk Tolerant">
+                        Risk Tolerant
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="button-container">
+
+            <button type="submit">
+                Generate Financial Report
+            </button>
+
+        </div>
+
+    </form>
+
+    <footer class="footer">
+
+        <hr>
+
+        <p><strong>Personal Finance Advisor Expert System</strong></p>
+
+        <p>Knowledge-Based Systems Project</p>
+
+        <p>Forward Chaining Inference Engine</p>
+
+        <p>Python • Flask • JSON Knowledge Base</p>
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>
+

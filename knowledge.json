@@ -298,7 +298,7 @@
     {
       "id": "RR6",
       "category": "Debt",
-      "title": "Debt Repayment",
+      "title": "Reduce Monthly Debt Payments",
       "conditions": [
         {
           "field": "debt_manageable",
@@ -308,14 +308,14 @@
       ],
       "action": {
         "type": "recommend",
-        "message": "Prioritize debt repayment before making new investments."
+        "message": "Your monthly debt payments exceed the recommended 30% of your monthly income. Consider reducing your debt obligations before increasing discretionary spending or investments."
       }
     },
 
     {
       "id": "RR7",
       "category": "Debt",
-      "title": "Debt Timeline",
+      "title": "Debt Repayment Plan",
       "conditions": [
         {
           "field": "debt_manageable",
@@ -325,14 +325,14 @@
       ],
       "action": {
         "type": "recommend",
-        "message": "Aim to clear your debt within 24 months."
+        "message": "Develop a repayment plan to gradually reduce your monthly debt payments while maintaining essential living expenses."
       }
     },
 
     {
       "id": "RR8",
       "category": "Debt",
-      "title": "Debt Status",
+      "title": "Health Debt Level",
       "conditions": [
         {
           "field": "debt_manageable",
@@ -342,14 +342,14 @@
       ],
       "action": {
         "type": "recommend",
-        "message": "Your debt level is manageable."
+        "message": "Your monthly debt payments are within the recommended limit and appear to be financially manageable."
       }
     },
 
     {
       "id": "RR9",
       "category": "Debt",
-      "title": "Debt Goal",
+      "title": "Maintain Good Debt Management",
       "conditions": [
         {
           "field": "debt_manageable",
@@ -359,7 +359,7 @@
       ],
       "action": {
         "type": "recommend",
-        "message": "Aim to clear your debt within 12 months."
+        "message": "Continue making debt payments on time and avoid taking on unnecessary new debt to maintain your current financial position."
       }
     },
 
@@ -376,7 +376,7 @@
         {
           "field": "risk_preference",
           "operator": "==",
-          "value": "Low"
+          "value": "Risk Averse"
         }
       ],
       "action": {
@@ -398,7 +398,7 @@
         {
           "field": "risk_preference",
           "operator": "==",
-          "value": "Medium"
+          "value": "Risk Neutral"
         }
       ],
       "action": {
@@ -420,7 +420,7 @@
         {
           "field": "risk_preference",
           "operator": "==",
-          "value": "High"
+          "value": "Risk Tolerant"
         }
       ],
       "action": {
@@ -442,7 +442,7 @@
       ],
       "action": {
         "type": "recommend",
-        "message": "Your dividend income has increased your monthly cash flow. Consider including it in your lon-term investment pan."
+        "message": "Your dividend income has increased your monthly cash flow. Consider including it in your long-term investment pan."
       }
     },
     {

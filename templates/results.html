@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financial Report</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/results.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <!--Header-->
+      <header class="page-header">
+        <span class="page-tag">Financial Report</span>
+        <h1>Your Financial Health Assessment</h1>
+
+        <p>
+          Your Financial information has been analyzed using knowledge-based
+          expert systems and forward chaining inference engine to generate your
+          personalized financial report.
+        </p>
+      </header>
+
+      <!--Score Card-->
+
+      <section class="score-card">
+        <div
+          class="score-circle"
+          style="--progress: {{ report.financial_score  * 3.6}}deg;"
+        >
+          <div class="score-inner">
+            <h1>{{ report.financial_score }}</h1>
+            <span>/100</span>
+          </div>
+        </div>
+
+        <span class="score-badge"> {{report.assessment}} </span>
+        <p>Overall Financial Health Score</p>
+      </section>
+
+      <!-- Financial Summary -->
+
+      <section class="summary-card">
+        <div class="card_header">
+          <i class="fa-sold fa-wallet"></i>
+          <div>
+            <h2>Financial Summary</h2>
+            <p>Your current financial Overview</p>
+          </div>
+        </div>
+
+        <table class="summary-table">
+          <tr>
+            <th>Item</th>
+            <th>Value</th>
+          </tr>
+
+          <tr>
+            <td>Total Monthly Income</td>
+            <td>KSh {{ "{:,.2f}".format(report.facts.total_income) }}</td>
+          </tr>
+
+          <tr>
+            <td>Recommended Expenses (50%)</td>
+            <td>
+              KSh {{ "{:,.2f}".format(report.facts.recommended_expenses) }}
+            </td>
+          </tr>
+
+          <tr>
+            <td>Recommended Wants (30%)</td>
+            <td>KSh {{ "{:,.2f}".format(report.facts.recommended_wants) }}</td>
+          </tr>
+
+          <tr>
+            <td>Recommended Savings (10%)</td>
+            <td>
+              KSh {{ "{:,.2f}".format(report.facts.recommended_savings) }}
+            </td>
+          </tr>
+
+          <tr>
+            <td>Recommended Investment (10%)</td>
+            <td>
+              KSh {{ "{:,.2f}".format(report.facts.recommended_investment) }}
+            </td>
+          </tr>
+
+          <tr>
+            <td>Emergency Fund Target (6 Months)</td>
+            <td>
+              KSh {{ "{:,.2f}".format(report.facts.emergency_fund_target) }}
+            </td>
+          </tr>
+
+          <tr>
+            <td>Current Emergency Fund</td>
+            <td>
+              KSh {{ "{:,.2f}".format(report.facts.current_emergency_fund) }}
+            </td>
+          </tr>
+
+          <tr>
+            <td>Monthly Debt Payment</td>
+            <td>
+              KSh {{ "{:,.2f}".format(report.facts.monthly_debt_payment) }}
+            </td>
+          </tr>
+
+          <tr>
+            <td>Debt-to-Income Ratio</td>
+            <td>
+              {{ "%.2f"|format(report.facts.debt_to_income_ratio * 100) }}%
+            </td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- Financial Health -->
+
+      <section class="health-card">
+        <div class="card-header">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <div>
+            <h2>Financial Health</h2>
+            <p>Assessment of your financial indicators.</p>
+          </div>
+        </div>
+
+        <table class="summary-table">
+          <tr>
+            <th>Assessment</th>
+            <th>Status</th>
+          </tr>
+
+          <tr>
+            <td>Budget Management</td>
+
+            <td>
+              {% if report.facts.within_budget %}
+
+              <span class="status-good"> Within Budget</span>
+
+              {% else %}
+
+              <span class="status-bad"> Overspending</span>
+
+              {% endif %}
+            </td>
+          </tr>
+
+          <tr>
+            <td>Emergency Fund Planning</td>
+
+            <td>
+              {% if report.facts.emergency_fund_sufficient %}
+
+              <span class="status-good"> Sufficient</span>
+
+              {% else %}
+
+              <span class="status-warning"> Needs Improvement</span>
+
+              {% endif %}
+            </td>
+          </tr>
+
+          <tr>
+            <td>Debt Management</td>
+
+            <td>
+              {% if report.facts.debt_manageable %}
+
+              <span class="status-good"> Manageable</span>
+
+              {% else %}
+
+              <span class="status-bad"> Too High</span>
+
+              {% endif %}
+            </td>
+          </tr>
+
+          <tr>
+            <td>Investment Eligibility</td>
+
+            <td>
+              {% if report.facts.eligible_to_invest %}
+
+              <span class="status-good"> Eligible to Invest</span>
+
+              {% else %}
+
+              <span class="status-warning">Not Yet Eligible</span>
+
+              {% endif %}
+            </td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- Recommendations -->
+
+      <section class="recommendation-card">
+        <div class="card-header">
+          <i class="fa-solid fa-lightbulb"></i>
+
+          <div>
+            <h2>Expert Recommendations</h2>
+            <p>Recommenadtions generated from the financial assessment.</p>
+          </div>
+        </div>
+
+        {% if grouped_recommendations %}
+        <div class="recommendation-grid">
+          {% for category, recommendations in grouped_recommendations.items() %}
+          <div class="category-card {{ category|lower|replace(' ','-')}}">
+            <h3>{{ category }}</h3>
+            <ul>
+              {% for recommendation in recommendations %}
+              <li>
+                <strong> {{ recommendation.title }}</strong>
+                <p>{{ recommendation.message}}</p>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p>No recommendations were generated.</p>
+        {% endif %}
+      </section>
+
+      <section class="analysis-card">
+        <div class="card_header">
+          <i class="fa-solod fa-brain"></i>
+
+          <div>
+            <h2>Expert Analysis</h2>
+
+            <p>Summary of the financial assessment.</p>
+          </div>
+        </div>
+
+        <div class="analysis-body">
+          <p>
+            Based on the financial information provided, the expert system
+            eveluated your income, spending patterns, debt obligations,
+            emergency savings and investment readiness using forward chaining
+            inference rules.
+          </p>
+
+          <p>
+            Your overall financial assessment is classified as
+            <strong> {{ report.assessment }}</strong> with a financial score of
+            <strong> {{ report.financial_score }} /100</strong>.
+          </p>
+
+          <p>
+            The recommendations presented in this report identify the key
+            financial areas that require attention and provide guidance for
+            improving your overall financial health.
+          </p>
+        </div>
+      </section>
+
+      <!-- Button -->
+
+      <div class="action-section">
+        <a href="/assessment" class="primary-btn">
+          <i class="fa-solid fa-rotate-right"></i>
+
+          Start New Assessment
+        </a>
+
+        <a href="/" class="secondary-btn"> Return Home </a>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-content">
+          <h3>Personal Finance Advisor</h3>
+
+          <p>Knowledge-Based Expert System for Financial Health Assessment</p>
+
+          <div class="footer-divider"></div>
+
+          <p class="footer-info">
+            Developed using
+            <strong> Python</strong>
+            <strong> Flask</strong>
+            <strong>JSON knowledge Base</strong>
+            and
+            <strong> Forward Chaining Inference</strong>
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
