@@ -7,7 +7,7 @@
         "knowledge_engineer":"Viona GItonga",
         "last-updated":"2026-07-26"
     },
-    "thresholds": {
+    "financial_thresholds": {
 
     "debt": {
 
@@ -37,9 +37,78 @@
 
     }
 
+},
+"recommendations": {
+    "reduce_debt": {
+
+    "title": "Reduce Debt",
+
+    "summary": "Prioritize reducing your monthly debt obligations.",
+
+    "explanation": "High debt repayments reduce your ability to save, invest, and respond to financial emergencies.",
+
+    "benefit": "Reducing debt improves financial flexibility and increases long-term financial stability."
+
+},
+"build_emergency_fund": {
+
+    "title": "Build an Emergency Fund",
+
+    "summary": "Increase your emergency savings before pursuing major investments.",
+
+    "explanation": "Emergency savings protect you against unexpected financial events such as job loss or medical emergencies.",
+
+    "benefit": "A healthy emergency fund reduces financial stress and prevents unnecessary borrowing."
+
+},
+"improve_budget": {
+
+    "title": "Improve Budgeting",
+
+    "summary": "Review your monthly spending and align it with your income.",
+
+    "explanation": "Effective budgeting helps ensure that essential expenses, savings, and investments remain balanced.",
+
+    "benefit": "Improved budgeting creates opportunities for saving and achieving long-term financial goals."
+
+},
+"start_investing": {
+
+    "title": "Begin Investing",
+
+    "summary": "Consider starting a long-term investment plan.",
+
+    "explanation": "Your financial situation indicates readiness to begin building long-term wealth through investing.",
+
+    "benefit": "Consistent investing can help grow your wealth and support future financial goals."
+
+},
+"maintain_financial_health": {
+
+    "title": "Maintain Your Financial Health",
+
+    "summary": "Continue following your current financial habits.",
+
+    "explanation": "Your financial profile demonstrates healthy budgeting, manageable debt, and good financial preparedness.",
+
+    "benefit": "Maintaining these habits supports long-term financial security."
+
+},
+"increase_savings": {
+
+    "title": "Increase Monthly Savings",
+
+    "summary": "Allocate a larger portion of your income toward savings.",
+
+    "explanation": "Regular saving strengthens financial resilience and supports future financial objectives.",
+
+    "benefit": "Higher savings improve your ability to manage emergencies and invest in future opportunities."
+
 }
 
 
+
+}
 
 
 
