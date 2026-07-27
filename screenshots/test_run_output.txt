@@ -1,0 +1,15 @@
+test_disposable_income_calculation (test_finance_advisor.TestDerivedFacts.test_disposable_income_calculation) ... ok
+test_emergency_fund_months_calculation (test_finance_advisor.TestDerivedFacts.test_emergency_fund_months_calculation) ... ok
+test_savings_rate_calculation (test_finance_advisor.TestDerivedFacts.test_savings_rate_calculation) ... ok
+test_debt_free_triggers_R12 (test_finance_advisor.TestInferenceRules.test_debt_free_triggers_R12) ... ok
+test_explanation_facility_generates_trace (test_finance_advisor.TestInferenceRules.test_explanation_facility_generates_trace) ... ok
+test_high_debt_to_income_triggers_R09 (test_finance_advisor.TestInferenceRules.test_high_debt_to_income_triggers_R09) ... ok
+test_low_emergency_fund_triggers_R05 (test_finance_advisor.TestInferenceRules.test_low_emergency_fund_triggers_R05) ... ok
+test_low_risk_tolerance_triggers_R19 (test_finance_advisor.TestInferenceRules.test_low_risk_tolerance_triggers_R19) ... ok
+test_overspending_triggers_R01 (test_finance_advisor.TestInferenceRules.test_overspending_triggers_R01) ... ok
+test_rules_sorted_by_priority_descending (test_finance_advisor.TestInferenceRules.test_rules_sorted_by_priority_descending) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.002s
+
+OK

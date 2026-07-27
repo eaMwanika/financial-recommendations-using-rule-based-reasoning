@@ -1,0 +1,67 @@
+
+===== Personal Finance Advisor =====
+1. Get financial advice
+2. View knowledge base rules
+3. Add a new rule (knowledge acquisition)
+4. Exit
+Choose an option: 
+Answer the following questions about your finances.
+
+Monthly net income: Monthly living expenses: Current liquid savings/cash: Total monthly debt payments: Total outstanding debt balance: Highest debt interest rate as a decimal (e.g. 0.22 for 22%, 0 if none): Number of financial dependents: Your age: Investment risk tolerance (low/medium/high): Investment experience (none/some/experienced): Employment status (employed/self_employed/unemployed/student): 
+--- Recommendations ---
+
+[BUDGETING] You are spending at or above your income. Track every expense for 30 days and cut discretionary spending immediately (dining out, subscriptions) until you have positive monthly disposable income.
+
+[EMERGENCY_FUND] Your emergency fund covers less than 3 months of expenses. Prioritize building it to at least 3 months before increasing discretionary spending or investing.
+
+[EMERGENCY_FUND] You have financial dependents and less than 6 months of emergency savings. Treat building this fund to 6 months as a top priority given your household's reliance on your income.
+
+[DEBT_MANAGEMENT] With dependents relying on your income and a high debt-to-income ratio, consider term life insurance alongside your debt paydown plan to protect your household from unexpected loss of income.
+
+[DEBT_MANAGEMENT] You are carrying debt at over 15% APR. Use the debt avalanche method: pay minimums on all debts and put every extra dollar toward this highest-interest balance before investing.
+
+[INVESTMENTS] Hold off on new investing until your emergency fund reaches 3 months and high-interest debt is under control; the guaranteed 'return' of paying down that debt outweighs typical market returns.
+
+[DEBT_MANAGEMENT] Your debt-to-income ratio is elevated (20-40%). Avoid new debt and allocate a fixed portion of disposable income to accelerated repayment each month.
+
+[INVESTMENTS] A medium risk tolerance supports a balanced portfolio, such as a 60/40 mix of equities to bonds, adjusted as your goals and timeline evolve.
+
+Show explanation trace? (y/n): 
+[R01 | budgeting | priority 10]
+  IF disposable_income (-500.000) <= 0
+  THEN You are spending at or above your income. Track every expense for 30 days and cut discretionary spending immediately (dining out, subscriptions) until you have positive monthly disposable income.
+
+[R05 | emergency_fund | priority 9]
+  IF emergency_fund_months (0.500) < 3
+  THEN Your emergency fund covers less than 3 months of expenses. Prioritize building it to at least 3 months before increasing discretionary spending or investing.
+
+[R08 | emergency_fund | priority 9]
+  IF dependents (1) > 0 AND emergency_fund_months (0.500) < 6
+  THEN You have financial dependents and less than 6 months of emergency savings. Treat building this fund to 6 months as a top priority given your household's reliance on your income.
+
+[R24 | debt_management | priority 9]
+  IF dependents (1) > 0 AND debt_to_income_ratio (0.320) > 0.3
+  THEN With dependents relying on your income and a high debt-to-income ratio, consider term life insurance alongside your debt paydown plan to protect your household from unexpected loss of income.
+
+[R10 | debt_management | priority 8]
+  IF highest_debt_interest_rate (0.250) > 0.15
+  THEN You are carrying debt at over 15% APR. Use the debt avalanche method: pay minimums on all debts and put every extra dollar toward this highest-interest balance before investing.
+
+[R22 | investments | priority 8]
+  IF emergency_fund_months (0.500) < 3 AND highest_debt_interest_rate (0.250) > 0.1
+  THEN Hold off on new investing until your emergency fund reaches 3 months and high-interest debt is under control; the guaranteed 'return' of paying down that debt outweighs typical market returns.
+
+[R13 | debt_management | priority 7]
+  IF debt_to_income_ratio (0.320) > 0.2 AND debt_to_income_ratio (0.320) <= 0.4
+  THEN Your debt-to-income ratio is elevated (20-40%). Avoid new debt and allocate a fixed portion of disposable income to accelerated repayment each month.
+
+[R20 | investments | priority 5]
+  IF risk_tolerance (medium) == medium
+  THEN A medium risk tolerance supports a balanced portfolio, such as a 60/40 mix of equities to bonds, adjusted as your goals and timeline evolve.
+
+===== Personal Finance Advisor =====
+1. Get financial advice
+2. View knowledge base rules
+3. Add a new rule (knowledge acquisition)
+4. Exit
+Choose an option: Goodbye.
