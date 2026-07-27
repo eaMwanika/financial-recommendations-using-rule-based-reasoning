@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "name": "Personal Finance Advisor Knowledge Base",
+    "version": "1.0",
+    "description": "Rule base for a forward-chaining personal finance advisory system. Rules cover budgeting, saving, emergency funds, investments, and debt management.",
+    "acquisition_source": "Compiled from standard personal-finance heuristics used by certified financial planners (e.g. the 50/30/20 budgeting rule, the 3-6 month emergency fund rule, the debt avalanche/snowball methods, and age-based risk tolerance guidance), cross-checked against consumer finance literature (CFPB, Investopedia) and refined through iterative testing against sample user profiles."
+  },
+  "fact_schema": {
+    "monthly_income": "number - net monthly income",
+    "monthly_expenses": "number - total monthly living expenses",
+    "current_savings": "number - total liquid savings/cash on hand",
+    "monthly_debt_payment": "number - total monthly debt repayment",
+    "total_debt": "number - total outstanding debt balance",
+    "highest_debt_interest_rate": "number - highest APR among debts, as a decimal e.g. 0.22",
+    "dependents": "integer - number of financial dependents",
+    "age": "integer - user age",
+    "risk_tolerance": "string - low | medium | high",
+    "investment_experience": "string - none | some | experienced",
+    "employment_status": "string - employed | self_employed | unemployed | student"
+  },
+  "derived_facts": {
+    "disposable_income": "monthly_income - monthly_expenses",
+    "savings_rate": "disposable_income / monthly_income",
+    "debt_to_income_ratio": "monthly_debt_payment / monthly_income",
+    "emergency_fund_months": "current_savings / monthly_expenses"
+  },
+  "rules": [
+    {"id": "R01", "category": "budgeting", "priority": 10, "conditions": [{"fact": "disposable_income", "op": "<=", "value": 0}], "conclusion": "You are spending at or above your income. Track every expense for 30 days and cut discretionary spending immediately (dining out, subscriptions) until you have positive monthly disposable income."},
+    {"id": "R02", "category": "budgeting", "priority": 8, "conditions": [{"fact": "savings_rate", "op": "<", "value": 0.1}, {"fact": "disposable_income", "op": ">", "value": 0}], "conclusion": "Your savings rate is below 10%. Adopt the 50/30/20 rule: 50% needs, 30% wants, 20% savings/debt repayment, and re-budget monthly expenses to close the gap."},
+    {"id": "R03", "category": "budgeting", "priority": 5, "conditions": [{"fact": "savings_rate", "op": ">=", "value": 0.2}], "conclusion": "You are saving 20% or more of income, which meets the standard 50/30/20 savings target. Maintain this rate and consider automating transfers to savings."},
+    {"id": "R04", "category": "budgeting", "priority": 4, "conditions": [{"fact": "employment_status", "op": "==", "value": "unemployed"}], "conclusion": "With no active income, prioritize essential expenses only and pause all non-essential spending until employment resumes."},
+    {"id": "R05", "category": "emergency_fund", "priority": 9, "conditions": [{"fact": "emergency_fund_months", "op": "<", "value": 3}], "conclusion": "Your emergency fund covers less than 3 months of expenses. Prioritize building it to at least 3 months before increasing discretionary spending or investing."},
+    {"id": "R06", "category": "emergency_fund", "priority": 7, "conditions": [{"fact": "emergency_fund_months", "op": ">=", "value": 3}, {"fact": "emergency_fund_months", "op": "<", "value": 6}], "conclusion": "Your emergency fund covers 3-6 months of expenses, which is an adequate baseline. Continue contributing until you reach 6 months, especially if income is variable."},
+    {"id": "R07", "category": "emergency_fund", "priority": 6, "conditions": [{"fact": "emergency_fund_months", "op": ">=", "value": 6}], "conclusion": "Your emergency fund exceeds 6 months of expenses. Consider redirecting additional savings toward debt repayment or investments rather than accumulating further cash."},
+    {"id": "R08", "category": "emergency_fund", "priority": 9, "conditions": [{"fact": "dependents", "op": ">", "value": 0}, {"fact": "emergency_fund_months", "op": "<", "value": 6}], "conclusion": "You have financial dependents and less than 6 months of emergency savings. Treat building this fund to 6 months as a top priority given your household's reliance on your income."},
+    {"id": "R09", "category": "debt_management", "priority": 10, "conditions": [{"fact": "debt_to_income_ratio", "op": ">", "value": 0.4}], "conclusion": "Your debt-to-income ratio exceeds 40%, indicating high debt burden. Contact creditors about restructuring, and consider credit counseling before taking on any new debt."},
+    {"id": "R10", "category": "debt_management", "priority": 8, "conditions": [{"fact": "highest_debt_interest_rate", "op": ">", "value": 0.15}], "conclusion": "You are carrying debt at over 15% APR. Use the debt avalanche method: pay minimums on all debts and put every extra dollar toward this highest-interest balance before investing."},
+    {"id": "R11", "category": "debt_management", "priority": 6, "conditions": [{"fact": "highest_debt_interest_rate", "op": "<=", "value": 0.15}, {"fact": "total_debt", "op": ">", "value": 0}], "conclusion": "Your debt interest rates are moderate. The debt snowball method (paying off smallest balances first) may keep you motivated while you continue building savings and investments in parallel."},
+    {"id": "R12", "category": "debt_management", "priority": 5, "conditions": [{"fact": "total_debt", "op": "==", "value": 0}], "conclusion": "You are debt-free. Redirect the amount you would have paid toward debt into your emergency fund or investment accounts."},
+    {"id": "R13", "category": "debt_management", "priority": 7, "conditions": [{"fact": "debt_to_income_ratio", "op": ">", "value": 0.2}, {"fact": "debt_to_income_ratio", "op": "<=", "value": 0.4}], "conclusion": "Your debt-to-income ratio is elevated (20-40%). Avoid new debt and allocate a fixed portion of disposable income to accelerated repayment each month."},
+    {"id": "R14", "category": "saving", "priority": 6, "conditions": [{"fact": "age", "op": "<", "value": 30}, {"fact": "savings_rate", "op": "<", "value": 0.15}], "conclusion": "Starting retirement savings in your 20s has an outsized long-term impact due to compounding. Aim to increase contributions toward at least 15% of income as expenses allow."},
+    {"id": "R15", "category": "saving", "priority": 4, "conditions": [{"fact": "age", "op": ">=", "value": 40}, {"fact": "savings_rate", "op": "<", "value": 0.15}], "conclusion": "With fewer working years remaining before typical retirement age, work to raise your savings rate toward 15-20% of income as a priority alongside debt repayment."},
+    {"id": "R16", "category": "saving", "priority": 3, "conditions": [{"fact": "investment_experience", "op": "==", "value": "none"}, {"fact": "emergency_fund_months", "op": ">=", "value": 3}], "conclusion": "With a stable emergency fund and no investment experience yet, start with low-cost, diversified index funds and use any employer retirement match available before exploring other saving vehicles."},
+    {"id": "R17", "category": "saving", "priority": 3, "conditions": [{"fact": "employment_status", "op": "==", "value": "self_employed"}], "conclusion": "As a self-employed earner without employer benefits, set aside a separate portion of income for taxes and consider a self-employed retirement account (e.g. SEP-IRA equivalent) in addition to your emergency fund."},
+    {"id": "R18", "category": "investments", "priority": 5, "conditions": [{"fact": "emergency_fund_months", "op": ">=", "value": 3}, {"fact": "debt_to_income_ratio", "op": "<=", "value": 0.2}, {"fact": "risk_tolerance", "op": "==", "value": "high"}], "conclusion": "With a solid emergency fund and manageable debt, a high risk tolerance supports a growth-oriented portfolio weighted toward equities/index funds."},
+    {"id": "R19", "category": "investments", "priority": 5, "conditions": [{"fact": "risk_tolerance", "op": "==", "value": "low"}], "conclusion": "A low risk tolerance suggests a conservative allocation: prioritize bonds, treasury securities, and stable-value funds over volatile equities."},
+    {"id": "R20", "category": "investments", "priority": 5, "conditions": [{"fact": "risk_tolerance", "op": "==", "value": "medium"}], "conclusion": "A medium risk tolerance supports a balanced portfolio, such as a 60/40 mix of equities to bonds, adjusted as your goals and timeline evolve."},
+    {"id": "R21", "category": "investments", "priority": 7, "conditions": [{"fact": "age", "op": ">", "value": 50}, {"fact": "risk_tolerance", "op": "==", "value": "high"}], "conclusion": "As retirement approaches, even with a high risk tolerance, begin gradually shifting a portion of your portfolio toward lower-volatility assets to protect accumulated gains."},
+    {"id": "R22", "category": "investments", "priority": 8, "conditions": [{"fact": "emergency_fund_months", "op": "<", "value": 3}, {"fact": "highest_debt_interest_rate", "op": ">", "value": 0.1}], "conclusion": "Hold off on new investing until your emergency fund reaches 3 months and high-interest debt is under control; the guaranteed 'return' of paying down that debt outweighs typical market returns."},
+    {"id": "R23", "category": "investments", "priority": 4, "conditions": [{"fact": "investment_experience", "op": "==", "value": "experienced"}, {"fact": "risk_tolerance", "op": "!=", "value": "low"}], "conclusion": "Given your investment experience, you may consider diversifying beyond index funds into sector funds, REITs, or individual securities in line with your risk tolerance and research capacity."},
+    {"id": "R24", "category": "debt_management", "priority": 9, "conditions": [{"fact": "dependents", "op": ">", "value": 0}, {"fact": "debt_to_income_ratio", "op": ">", "value": 0.3}], "conclusion": "With dependents relying on your income and a high debt-to-income ratio, consider term life insurance alongside your debt paydown plan to protect your household from unexpected loss of income."}
+  ]
+}
