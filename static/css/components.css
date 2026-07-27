@@ -1,0 +1,229 @@
+/* reusable pieces */
+.button-primary{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+.button-primary:hover{
+
+    background:var(--primary-dark);
+
+}
+/* card*/
+.card{
+
+    background:var(--surface);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    padding:32px;
+
+}
+/* questions */
+.question-card{
+
+    max-width:750px;
+
+    margin:auto;
+
+}
+.question-step{
+
+    margin-bottom:20px;
+
+}
+.step-number{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    background:#DBEAFE;
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    font-size:.9rem;
+
+}
+.question-header{
+
+    margin-bottom:30px;
+
+}
+
+.question-header h2{
+
+    margin-bottom:10px;
+
+}
+
+.question-header p{
+
+    color:var(--text-light);
+
+}
+.question-body{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+.question-body label{
+
+    font-weight:600;
+
+}
+
+/* input-group*/
+.input-group{
+
+    display:flex;
+
+    align-items:center;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    background:white;
+
+}
+.input-prefix{
+
+    padding:14px 18px;
+
+    background:#F8FAFC;
+
+    border-right:1px solid var(--border);
+
+    color:var(--text-light);
+
+    font-weight:600;
+
+}
+.input-group input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    padding:16px;
+
+    font-size:1rem;
+
+    font-family:inherit;
+
+}
+.helper-text{
+
+    color:var(--text-light);
+
+    font-size:.9rem;
+
+}
+.required{
+
+    color:var(--danger);
+
+}
+/* progress-container*/
+.progress-container{
+
+    margin-bottom:40px;
+
+}
+.progress-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
+}
+.progress-step{
+
+    font-weight:700;
+
+    color:var(--primary);
+
+}
+.progress-total{
+
+    color:var(--text-light);
+
+    font-size:.95rem;
+
+}
+.progress-track{
+
+    width:100%;
+
+    height:10px;
+
+    background:#E2E8F0;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+.progress-fill{
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        #5B7BD5
+    );
+
+    transition:width .5s ease;
+
+}
+.progress-text{
+
+    margin-top:10px;
+
+    text-align:right;
+
+    color:var(--text-light);
+
+    font-size:.9rem;
+
+}

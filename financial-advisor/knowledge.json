@@ -289,324 +289,420 @@
 }
 
 },
-"rules": {
-  "debt_assessment": [
-    {
-      "id": "R001",
-      "description": "Debt ratio is within the healthy threshold.",
-      "priority": 1,
-      "conditions": [
-        {
-          "field": "debt_ratio",
-          "operator": "<=",
-          "value": "financial_thresholds.debt.healthy_ratio"
-        }
-      ],
-      "conclusions": {
-        "debt_burden": "low"
-      }
-    },
-    {
-      "id": "R002",
-      "description": "Debt ratio is between the healthy and warning thresholds.",
-      "priority": 1,
-      "conditions": [
-        {
-          "field": "debt_ratio",
-          "operator": ">",
-          "value": "financial_thresholds.debt.healthy_ratio"
-        },
-        {
-          "field": "debt_ratio",
-          "operator": "<=",
-          "value": "financial_thresholds.debt.warning_ratio"
-        }
-      ],
-      "conclusions": {
-        "debt_burden": "moderate"
-      }
-    },
-    {
-      "id": "R003",
-      "description": "Debt ratio exceeds the warning threshold.",
-      "priority": 1,
-      "conditions": [
-        {
-          "field": "debt_ratio",
-          "operator": ">",
-          "value": "financial_thresholds.debt.warning_ratio"
-        }
-      ],
-      "conclusions": {
-        "debt_burden": "high"
-      }
-    }
-  ],
 
-  "budget_assessment": [
-    {
-      "id": "R004",
-      "description": "Expenses are within the recommended budget.",
-      "priority": 1,
-      "conditions": [
-        {
-          "field": "expenses",
-          "operator": "<=",
-          "field2": "recommended_expenses"
-        }
-      ],
-      "conclusions": {
-        "budget_status": "healthy"
+"debt_assessment": [
+  {
+    "id": "R001",
+    "description": "Debt ratio is within the healthy threshold.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "debt_ratio",
+        "operator": "<=",
+        "operand": "financial_thresholds.debt.healthy_ratio"
       }
-    },
-    {
-      "id": "R005",
-      "description": "Expenses exceed the recommended budget.",
-      "priority": 1,
-      "conditions": [
-        {
-          "field": "expenses",
-          "operator": ">",
-          "field2": "recommended_expenses"
-        }
-      ],
-      "conclusions": {
-        "budget_status": "needs_improvement"
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "debt_burden",
+        "value": "low"
       }
-    }
-  ],
+    ]
+  },
+  {
+    "id": "R002",
+    "description": "Debt ratio is between the healthy and warning thresholds.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "debt_ratio",
+        "operator": ">",
+        "operand": "financial_thresholds.debt.healthy_ratio"
+      },
+      {
+        "field": "debt_ratio",
+        "operator": "<=",
+        "operand": "financial_thresholds.debt.warning_ratio"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "debt_burden",
+        "value": "moderate"
+      }
+    ]
+  },
+  {
+    "id": "R003",
+    "description": "Debt ratio exceeds the warning threshold.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "debt_ratio",
+        "operator": ">",
+        "operand": "financial_thresholds.debt.warning_ratio"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "debt_burden",
+        "value": "high"
+      }
+    ]
+  }
+],
+"budget_assessment": [
+  {
+    "id": "R004",
+    "description": "Monthly expenses are within the recommended budget.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "expenses",
+        "operator": "<=",
+        "operand": "recommended_expenses"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "budget_status",
+        "value": "healthy"
+      }
+    ]
+  },
+  {
+    "id": "R005",
+    "description": "Monthly expenses exceed the recommended budget.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "expenses",
+        "operator": ">",
+        "operand": "recommended_expenses"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "budget_status",
+        "value": "needs_improvement"
+      }
+    ]
+  }
+],
+"emergency_fund_assessment": [
+  {
+    "id": "R006",
+    "description": "Emergency fund meets the recommended level.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "emergency_months",
+        "operator": ">=",
+        "operand": "financial_thresholds.emergency_fund.recommended_months"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "emergency_status",
+        "value": "healthy"
+      }
+    ]
+  },
+  {
+    "id": "R007",
+    "description": "Emergency fund meets the minimum acceptable level.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "emergency_months",
+        "operator": ">=",
+        "operand": "financial_thresholds.emergency_fund.minimum_months"
+      },
+      {
+        "field": "emergency_months",
+        "operator": "<",
+        "operand": "financial_thresholds.emergency_fund.recommended_months"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "emergency_status",
+        "value": "adequate"
+      }
+    ]
+  },
+  {
+    "id": "R008",
+    "description": "Emergency fund is below the minimum recommended level.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "emergency_months",
+        "operator": "<",
+        "operand": "financial_thresholds.emergency_fund.minimum_months"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "emergency_status",
+        "value": "inadequate"
+      }
+    ]
+  }
+],
+"investment_readiness": [
+  {
+    "id": "R009",
+    "description": "Client is financially ready to begin investing.",
+    "priority": 2,
+    "conditions": [
+      {
+        "field": "budget_status",
+        "operator": "==",
+        "operand": "healthy"
+      },
+      {
+        "field": "debt_burden",
+        "operator": "==",
+        "operand": "low"
+      },
+      {
+        "field": "emergency_status",
+        "operator": "==",
+        "operand": "healthy"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "investment_ready",
+        "value": true
+      }
+    ]
+  },
+  {
+    "id": "R010",
+    "description": "Client is not financially ready to invest.",
+    "priority": 2,
+    "conditions": [
+      {
+        "field": "debt_burden",
+        "operator": "==",
+        "operand": "high"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "investment_ready",
+        "value": false
+      }
+    ]
+  }
+],
+"recommendation_rules": [
+  {
+    "id": "R011",
+    "description": "Recommend debt reduction when debt burden is high.",
+    "priority": 3,
+    "conditions": [
+      {
+        "field": "debt_burden",
+        "operator": "==",
+        "operand": "high"
+      }
+    ],
+    "actions": [
+      {
+        "type": "recommendation",
+        "value": "reduce_debt"
+      },
+      {
+        "type": "action_plan",
+        "value": "reduce_debt"
+      }
+    ]
+  },
+  {
+    "id": "R012",
+    "description": "Recommend building an emergency fund when savings are inadequate.",
+    "priority": 3,
+    "conditions": [
+      {
+        "field": "emergency_status",
+        "operator": "==",
+        "operand": "inadequate"
+      }
+    ],
+    "actions": [
+      {
+        "type": "recommendation",
+        "value": "build_emergency_fund"
+      },
+      {
+        "type": "action_plan",
+        "value": "build_emergency_fund"
+      }
+    ]
+  },
+  {
+    "id": "R013",
+    "description": "Recommend improving budgeting when expenses exceed the recommended level.",
+    "priority": 3,
+    "conditions": [
+      {
+        "field": "budget_status",
+        "operator": "==",
+        "operand": "needs_improvement"
+      }
+    ],
+    "actions": [
+      {
+        "type": "recommendation",
+        "value": "improve_budget"
+      },
+      {
+        "type": "action_plan",
+        "value": "improve_budget"
+      }
+    ]
+  },
+  {
+    "id": "R014",
+    "description": "Recommend beginning long-term investing when financially ready.",
+    "priority": 3,
+    "conditions": [
+      {
+        "field": "investment_ready",
+        "operator": "==",
+        "operand": true
+      }
+    ],
+    "actions": [
+      {
+        "type": "recommendation",
+        "value": "start_investing"
+      },
+      {
+        "type": "action_plan",
+        "value": "start_investing"
+      }
+    ]
+  },
+  {
+    "id": "R015",
+    "description": "Encourage users with excellent financial health to maintain their habits.",
+    "priority": 3,
+    "conditions": [
+      {
+        "field": "budget_status",
+        "operator": "==",
+        "operand": "healthy"
+      },
+      {
+        "field": "debt_burden",
+        "operator": "==",
+        "operand": "low"
+      },
+      {
+        "field": "emergency_status",
+        "operator": "==",
+        "operand": "healthy"
+      }
+    ],
+    "actions": [
+      {
+        "type": "recommendation",
+        "value": "maintain_financial_health"
+      }
+    ]
+  }
+],
+"investment_profile_rules": [
+  {
+    "id": "R016",
+    "description": "Provide conservative investment guidance for financially ready risk-averse clients.",
+    "priority": 4,
+    "conditions": [
+      {
+        "field": "investment_ready",
+        "operator": "==",
+        "operand": true
+      },
+      {
+        "field": "risk_preference",
+        "operator": "==",
+        "operand": "Risk Averse"
+      }
+    ],
+    "actions": [
+      {
+        "type": "investment_guidance",
+        "value": "conservative"
+      }
+    ]
+  },
+  {
+    "id": "R017",
+    "description": "Provide moderate investment guidance for financially ready risk-neutral clients.",
+    "priority": 4,
+    "conditions": [
+      {
+        "field": "investment_ready",
+        "operator": "==",
+        "operand": true
+      },
+      {
+        "field": "risk_preference",
+        "operator": "==",
+        "operand": "Risk Neutral"
+      }
+    ],
+    "actions": [
+      {
+        "type": "investment_guidance",
+        "value": "moderate"
+      }
+    ]
+  },
+  {
+    "id": "R018",
+    "description": "Provide aggressive investment guidance for financially ready risk-tolerant clients.",
+    "priority": 4,
+    "conditions": [
+      {
+        "field": "investment_ready",
+        "operator": "==",
+        "operand": true
+      },
+      {
+        "field": "risk_preference",
+        "operator": "==",
+        "operand": "Risk Tolerant"
+      }
+    ],
+    "actions": [
+      {
+        "type": "investment_guidance",
+        "value": "aggressive"
+      }
+    ]
+  }
+]
 
-  "emergency_fund_assessment": [
-    {
-      "id": "R006",
-      "description": "Emergency fund meets the recommended level.",
-      "priority": 1,
-      "conditions": [
-        {
-          "field": "emergency_months",
-          "operator": ">=",
-          "value": "financial_thresholds.emergency_fund.recommended_months"
-        }
-      ],
-      "conclusions": {
-        "emergency_status": "healthy"
-      }
-    },
-    {
-      "id": "R007",
-      "description": "Emergency fund meets the minimum level.",
-      "priority": 1,
-      "conditions": [
-        {
-          "field": "emergency_months",
-          "operator": ">=",
-          "value": "financial_thresholds.emergency_fund.minimum_months"
-        },
-        {
-          "field": "emergency_months",
-          "operator": "<",
-          "value": "financial_thresholds.emergency_fund.recommended_months"
-        }
-      ],
-      "conclusions": {
-        "emergency_status": "adequate"
-      }
-    },
-    {
-      "id": "R008",
-      "description": "Emergency fund is below the minimum level.",
-      "priority": 1,
-      "conditions": [
-        {
-          "field": "emergency_months",
-          "operator": "<",
-          "value": "financial_thresholds.emergency_fund.minimum_months"
-        }
-      ],
-      "conclusions": {
-        "emergency_status": "inadequate"
-      }
-    }
-  ],
 
-  "investment_readiness": [
-    {
-      "id": "R009",
-      "description": "Client is financially ready to invest.",
-      "priority": 2,
-      "conditions": [
-        {
-          "field": "budget_status",
-          "operator": "==",
-          "value": "healthy"
-        },
-        {
-          "field": "debt_burden",
-          "operator": "==",
-          "value": "low"
-        },
-        {
-          "field": "emergency_status",
-          "operator": "==",
-          "value": "healthy"
-        }
-      ],
-      "conclusions": {
-        "investment_ready": true
-      }
-    },
-    {
-      "id": "R010",
-      "description": "Client is not ready to invest due to financial conditions.",
-      "priority": 2,
-      "conditions": [
-        {
-          "field": "debt_burden",
-          "operator": "==",
-          "value": "high"
-        }
-      ],
-      "conclusions": {
-        "investment_ready": false
-      }
-    }
-  ],
 
-  "recommendation_rules": [
-    {
-      "id": "R011",
-      "conditions": [
-        {
-          "field": "debt_burden",
-          "operator": "==",
-          "value": "high"
-        }
-      ],
-      "conclusions": {
-        "recommendation": "reduce_debt"
-      }
-    },
-    {
-      "id": "R012",
-      "conditions": [
-        {
-          "field": "emergency_status",
-          "operator": "==",
-          "value": "inadequate"
-        }
-      ],
-      "conclusions": {
-        "recommendation": "build_emergency_fund"
-      }
-    },
-    {
-      "id": "R013",
-      "conditions": [
-        {
-          "field": "budget_status",
-          "operator": "==",
-          "value": "needs_improvement"
-        }
-      ],
-      "conclusions": {
-        "recommendation": "improve_budget"
-      }
-    },
-    {
-      "id": "R014",
-      "conditions": [
-        {
-          "field": "investment_ready",
-          "operator": "==",
-          "value": true
-        }
-      ],
-      "conclusions": {
-        "recommendation": "start_investing"
-      }
-    },
-    {
-      "id": "R015",
-      "conditions": [
-        {
-          "field": "budget_status",
-          "operator": "==",
-          "value": "healthy"
-        },
-        {
-          "field": "debt_burden",
-          "operator": "==",
-          "value": "low"
-        },
-        {
-          "field": "emergency_status",
-          "operator": "==",
-          "value": "healthy"
-        }
-      ],
-      "conclusions": {
-        "recommendation": "maintain_financial_health"
-      }
-    }
-  ],
 
-  "investment_profile_rules": [
-    {
-      "id": "R016",
-      "conditions": [
-        {
-          "field": "investment_ready",
-          "operator": "==",
-          "value": true
-        },
-        {
-          "field": "risk_preference",
-          "operator": "==",
-          "value": "Risk Averse"
-        }
-      ],
-      "conclusions": {
-        "investment_profile": "conservative"
-      }
-    },
-    {
-      "id": "R017",
-      "conditions": [
-        {
-          "field": "investment_ready",
-          "operator": "==",
-          "value": true
-        },
-        {
-          "field": "risk_preference",
-          "operator": "==",
-          "value": "Risk Neutral"
-        }
-      ],
-      "conclusions": {
-        "investment_profile": "moderate"
-      }
-    },
-    {
-      "id": "R018",
-      "conditions": [
-        {
-          "field": "investment_ready",
-          "operator": "==",
-          "value": true
-        },
-        {
-          "field": "risk_preference",
-          "operator": "==",
-          "value": "Risk Tolerant"
-        }
-      ],
-      "conclusions": {
-        "investment_profile": "aggressive"
-      }
-    }
-  ]
-}
+
+
 
 
 }

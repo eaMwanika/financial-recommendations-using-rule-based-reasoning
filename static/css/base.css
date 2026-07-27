@@ -1,0 +1,59 @@
+/* global sytles */
+:root{
+    --primary: #395391;
+    --primary-dark: #203b84;
+
+    --background:#F8FAFC;
+    --surface:#FFFFFF;
+
+    --text:#0F172A;
+    --text-light:#64748B;
+
+    --border:#E2E8F0;
+
+    --success:#092b15;
+    --warning:#D97706;
+    --danger:#DC2626;
+
+    --shadow:0 10px 30px rgba(15,23,42,.08);
+    --radius:20px;
+    --transition:.3s ease;
+    --container-width:1200px;
+   
+
+}
+
+/* reset*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+
+    
+}
+
+/*body*/
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    line-height:1.6;
+
+}
+/* links*/
+a{
+
+    text-decoration:none;
+    color:inherit;
+
+}
+/* button*/
+button{
+
+    font-family:inherit;
+
+}
