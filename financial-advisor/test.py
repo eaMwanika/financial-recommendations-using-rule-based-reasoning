@@ -1,9 +1,16 @@
-from KnowledgeBase import KnowledgeBase
+from knowledge_base import KnowledgeBase
 from InferenceEngine import InferenceEngine
 
 kb = KnowledgeBase()
+print(kb.data.keys())
 
 engine = InferenceEngine(kb)
+
+kb = KnowledgeBase()
+engine = InferenceEngine(kb)
+
+print(type(engine.rules))
+print(engine.rules)
 
 facts = {
     "debt_ratio": 0.45,

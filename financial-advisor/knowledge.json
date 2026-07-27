@@ -289,8 +289,8 @@
 }
 
 },
-
-"debt_assessment": [
+"rules": {
+  "debt_assessment": [
   {
     "id": "R001",
     "description": "Debt ratio is within the healthy threshold.",
@@ -698,6 +698,9 @@
   }
 ]
 
+
+
+}
 
 
 

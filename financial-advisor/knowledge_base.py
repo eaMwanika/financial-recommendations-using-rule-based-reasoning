@@ -40,7 +40,7 @@ class KnowledgeBase:
         return self.data.get("action_plans", {})
     
     def get_investment_guidance(self):
-        return self.data.get("investment_giudance", {})
+        return self.data.get("investment_guidance", {})
     
     def get_rules(self):
         return self.data.get("rules", {})

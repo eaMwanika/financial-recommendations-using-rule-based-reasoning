@@ -124,7 +124,7 @@ class InferenceEngine:
                 )
                 if recommendation and recommendation not in recommendations:
                     recommendations.append({
-                        "id":"recommendation_id",
+                        "id":recommendation_id,
                         "content":recommendation
                         
                     })
@@ -164,55 +164,53 @@ class InferenceEngine:
                         changed = True
         return changed
     
-    
     def forward_chain(self):
-
+        
         changed = True
-
+        
         while changed:
-
             
-
-        print("\n==========================")
-        print("Starting Forward Chain Pass")
-        print("==========================")
-
-        for category_name, category in self.rules.items():
-
-            print(f"\nCategory: {category_name}")
-
-            for rule in category:
-
-                rule_id = rule["id"]
-
-                print(f"\nChecking Rule: {rule_id}")
-
-                # Skip rules that have already fired
-                if rule_id in self.fired_rules:
-                    print(f"Rule {rule_id} already fired. Skipping.")
-                    continue
-
-                # Check whether the rule's conditions are satisfied
-                if self.evaluate_rule(rule):
-
-                    print(f"Rule {rule_id} conditions are TRUE.")
-
-                    # Execute the rule's actions
-                    if self.fire_rule(rule):
-
-                        print(f"Rule {rule_id} FIRED.")
-                        print("Derived Facts:", self.derived_facts)
-                        print("Working Memory:", self.facts)
-
-                        # Mark the rule as fired
-                        self.fired_rules.add(rule_id)
-
-                        # Continue another forward-chaining cycle
-                        changed = True
-
-                else:
-                    print(f"Rule {rule_id} conditions are FALSE.")
-               
+            changed = False
+            
+            print("\n Starting Forward Chain Pass")
+            
+            
+            for category_name, category in self.rules.items():
+                print(f"\n Catergory: {category_name}")
+                
+                for rule in category:
+                    
+                    rule_id = rule["id"]
+                    
+                    print(f"\nChecking Rule: {rule_id}")
+                    
+                    # skip rules already fired.
+                    
+                    if rule_id in self.fired_rules:
+                        print(f"Rule {rule_id} already fired. Skipping")
+                        
+                        continue
+                    # check whether rule's condition are satisfied
+                    
+                    if self.evaluate_rule(rule):
+                        
+                        print(f"Rule {rule_id} conditions are TRUE.")
+                        
+                        # Exwcute the rules action
+                        if self.fire_rule(rule):
+                            print(f"Rule {rule_id} FIRED.")
+                            print("Derived Facts:", self.derived_facts)
+                            print("Working Memory:", self.facts)
+                            
+                            # Mark rules as fired.
+                            self.fired_rules.add(rule_id)
+                            
+                            changed = True
+                        
+                    else:
+                        print(f"Rule {rule_id} conditions are FALSE.")    
+    
+    
     
    
             
