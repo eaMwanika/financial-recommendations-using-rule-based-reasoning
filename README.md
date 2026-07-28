@@ -59,3 +59,45 @@ Based on facts and rules, the system can conclude:
 1. Clone the repository:
    ```bash
    git clone https://github.com/eaMwanika/financial-recommendations-using-rule-based-reasoning
+   cd financial-recommendations-using-rule-based-reasoning
+   pip install -r requirements.txt
+   ```
+2. Run the web app: `python app.py`, then open `http://127.0.0.1:5000`.
+
+---
+
+## Additional Components (Testing, CLI, Knowledge Acquisition)
+
+These were added on top of the existing `KnowledgeBase` / `FinancialCalculator`
+/ `InferenceEngine` modules and `knowledge.json` — no existing files were
+modified, so they run against the same knowledge base and reasoning logic
+as the Flask app.
+
+### Automated tests (`tests/test_finance_advisor.py`)
+Covers knowledge base loading, derived-fact calculations (total income,
+debt-to-income ratio, emergency fund target), and inference/recommendation
+generation. Run with:
+```bash
+python -m unittest discover -s tests -v
+```
+
+### CLI interface (`cli.py`)
+A second, terminal-based way to use the same engine as the Flask app —
+useful for quick checks without starting the web server. Also adds an
+**explanation facility**: after getting recommendations, choose to see
+the explanation trace, which lists every inference and recommendation
+rule that fired along with the exact fact values that satisfied it
+(`IF <condition, with real values> THEN <conclusion>`).
+```bash
+python cli.py
+```
+
+### Knowledge acquisition tool (`add_rule.py`)
+`knowledge.json` previously could only be extended by hand-editing the
+file. This script walks through adding a new inference rule or
+recommendation rule (fields, operator, comparison value or field,
+resulting fact/message) and saves it back to `knowledge.json`, so the
+knowledge base can grow without directly editing JSON.
+```bash
+python add_rule.py
+```
