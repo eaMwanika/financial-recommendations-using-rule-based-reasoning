@@ -606,3 +606,35 @@
         padding: 14px 14px 14px 48px;
     }
 }
+
+/* Chat entry on assessment page */
+
+.chat-entry {
+    margin-top: 28px;
+    text-align: center;
+}
+
+.chat-entry p {
+    margin-bottom: 12px;
+    color: var(--text-light);
+}
+
+.chat-entry .secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #FFFFFF;
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.chat-entry .secondary-button:hover {
+    background: #F8FAFF;
+    border-color: var(--primary);
+    color: var(--primary);
+}

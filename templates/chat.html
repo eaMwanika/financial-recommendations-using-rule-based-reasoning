@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/chat.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<div class="page-shell">
+  <div class="step-card">
+    <div class="chat-page">
+      <div class="chat-window">
+        <div class="chat-message bot">
+          <div class="message-bubble">Hello! I’m your Financial Advisor.</div>
+        </div>
+
+        <div class="chat-message bot">
+          <div class="message-bubble">
+            Tell me about your income, expenses, monthly-debt payments, savings,
+            and investment preference in one message.
+          </div>
+        </div>
+
+        <div class="chat-message bot">
+          <div class="message-bubble example">
+            Example: “I am a student. I receive 15,000 allowance, earn 10,000
+            salary, spend 18,000, have no debt, keep 20,000 in savings, and
+            prefer low risk investments.”
+          </div>
+        </div>
+      </div>
+
+      <form
+        method="POST"
+        action="{{ url_for('chat_assessment') }}"
+        class="chat-input-area"
+      >
+        <div class="input-group">
+          <label for="message">Your message</label>
+
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Type your financial situation here..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="chat-actions">
+          <a href="{{ url_for('assessment') }}" class="secondary-button">
+            Back
+          </a>
+
+          <button type="submit" class="primary-button">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
