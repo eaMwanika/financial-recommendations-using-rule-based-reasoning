@@ -1,5 +1,5 @@
 from knowledge_base import KnowledgeBase
-from InferenceEngine import InferenceEngine
+from Inference_engine import InferenceEngine
 
 kb = KnowledgeBase()
 print(kb.data.keys())

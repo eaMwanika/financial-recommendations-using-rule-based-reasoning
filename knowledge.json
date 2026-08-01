@@ -238,7 +238,7 @@
 
     "investment_goal": "Capital preservation and stable income.",
 
-    "risk_level": "Low"
+    "risk_level": "low"
 
 },
 "moderate": {
@@ -261,7 +261,7 @@
 
     "investment_goal": "Balanced growth and income.",
 
-    "risk_level": "Medium"
+    "risk_level": "medium"
 
 },
 "aggressive": {
@@ -284,7 +284,7 @@
 
     "investment_goal": "Long-term wealth creation.",
 
-    "risk_level": "High"
+    "risk_level": "high"
 
 }
 
@@ -640,13 +640,13 @@
       {
         "field": "risk_preference",
         "operator": "==",
-        "operand": "Risk Averse"
+        "operand": "low"
       }
     ],
     "actions": [
       {
         "type": "investment_guidance",
-        "value": "conservative"
+        "value": "low"
       }
     ]
   },
@@ -663,13 +663,13 @@
       {
         "field": "risk_preference",
         "operator": "==",
-        "operand": "Risk Neutral"
+        "operand": "medium"
       }
     ],
     "actions": [
       {
         "type": "investment_guidance",
-        "value": "moderate"
+        "value": "medium"
       }
     ]
   },
@@ -686,17 +686,23 @@
       {
         "field": "risk_preference",
         "operator": "==",
-        "operand": "Risk Tolerant"
+        "operand": "high"
       }
     ],
     "actions": [
       {
         "type": "investment_guidance",
-        "value": "aggressive"
+        "value": "high"
       }
     ]
   }
+  
+
+
 ]
+
+
+
 
 
 

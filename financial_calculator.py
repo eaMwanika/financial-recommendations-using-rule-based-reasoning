@@ -40,7 +40,7 @@ class FinancialCalculator:
         
         emergency_months = self.calculate_emergency_months(
             emergency_fund,
-            recommended_expenses
+            expenses
         )
         
         facts ={
@@ -111,9 +111,9 @@ class FinancialCalculator:
     def calculate_emergency_months(
         self,
         emergency_fund,
-        monthly_essential_expenses
+        expenses,
     ):
-        if monthly_essential_expenses <=0:
+        if expenses <=0:
             return 0
-        return emergency_fund / monthly_essential_expenses
+        return emergency_fund / expenses
         

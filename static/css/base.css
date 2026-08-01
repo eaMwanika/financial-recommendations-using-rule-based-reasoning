@@ -1,59 +1,62 @@
-/* global sytles */
-:root{
+/* Design Tokens */
+:root {
     --primary: #395391;
     --primary-dark: #203b84;
 
-    --background:#F8FAFC;
-    --surface:#FFFFFF;
+    --background: #F8FAFC;
+    --surface: #FFFFFF;
 
-    --text:#0F172A;
-    --text-light:#64748B;
+    --text: #0F172A;
+    --text-light: #64748B;
 
-    --border:#E2E8F0;
+    --border: #E2E8F0;
 
-    --success:#092b15;
-    --warning:#D97706;
-    --danger:#DC2626;
+    --success: #035824;
+    --warning: #D97706;
+    --danger: #DC2626;
 
-    --shadow:0 10px 30px rgba(15,23,42,.08);
-    --radius:20px;
-    --transition:.3s ease;
-    --container-width:1200px;
-   
+    --shadow: 0 10px 30px rgba(15,23,42,.08);
 
+    --radius: 20px;
+    --transition: 0.3s ease;
 }
 
-/* reset*/
-*{
-    margin:0;
-    padding:0;
+
+
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-
-    
 }
 
-/*body*/
-body{
 
-    font-family:'Inter',sans-serif;
+/* Global Body */
+body {
+    font-family: "Inter", sans-serif;
 
-    background:var(--background);
+    background: var(--background);
 
-    color:var(--text);
+    color: var(--text);
 
-    line-height:1.6;
+    line-height: 1.6;
 
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-/* links*/
-a{
 
-    text-decoration:none;
-    color:inherit;
 
+/* Links */
+a {
+    text-decoration: none;
+    color: inherit;
 }
-/* button*/
-button{
 
-    font-family:inherit;
-
+.hidden {
+    display: none !important;
 }
+

@@ -1,0 +1,477 @@
+{% extends 'base.html'%} {% block title%} Financial Profile | Personal Finance
+Advisor {% endblock %} {% block styles %}
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/assessment.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<section class="step-card">
+  <div class="assessment-topbar">
+
+    <a href="/" class="home-link" title="Home">
+      <i class="fa-solid fa-house"></i>
+
+    </a>
+    <button type="button" class="wizard-back hidden" id ="wizard-back">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back
+    </button>
+
+    <!--progress indicator-->
+    <div class="wizard-progress">
+
+        <div class="wizar-progress-text">
+            Step <span id="current-step">1</span> of <span id="total-steps">8</span>
+
+        </div>
+       
+
+      
+    </div>
+
+  </div>
+
+  <!--profile step-->
+  <div class="assessment_step" id="profile-step">
+    <div class="step-header">
+      <h1>Tell us about yourself</h1>
+      <p>This help us personalize your financial assessment.</p>
+    </div>
+    <div class="profile-options">
+      <button class="option-button" id="student-btn">
+        Student
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <button class="option-button" id="employed-btn">
+        Employeed
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <button class="option-button" id="self-employed-btn">
+        Self-employeed
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <button class="option-button" id="business-owner-btn">
+        Business Owner
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!--Income step-->
+
+  <div class="assessment-step hidden" id="income-step">
+    <div class="step-header">
+      <h1>Your income</h1>
+      <p>Select all income sources that apply to you.</p>
+    </div>
+
+    <div class="income-options" id="income-options"></div>
+    <div class="step-actions">
+      <button type="button" class="continue-button" id="income-continue">
+        Continue
+      </button>
+    </div>
+  </div>
+
+  <!-- Income Amount Step -->
+  <div class="assessment-step hidden" id="income-amount-step">
+    <div class="step-header">
+      <h1>Income amounts</h1>
+    </div>
+
+    <div id="income-amount-fields" class="income-fields">
+      <!-- Amount fields inserted by JavaScript -->
+    </div>
+
+    <div class="input-group">
+      <label for="passive-income">Monthly passive income (KSh)</label>
+
+      <input type="number" id="passive-income" placeholder="0" min="0" />
+    </div>
+
+    <div class="step-actions">
+      <button type="button" class="continue-button" id="income-amount-continue">
+        Continue
+      </button>
+    </div>
+  </div>
+
+    <!-- Expenses Step -->
+    <div class="assessment-step hidden" id="expenses-step">
+
+        <div class="step-header">
+
+            <h1>Monthly expenses</h1>
+
+            <p>Enter your total monthly expenses.</p>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="expenses">Total monthly expenses (KSh)</label>
+
+            <input type="number"
+                id="expenses"
+                name="expenses"
+                placeholder="0"
+                min="0">
+
+        </div>
+
+
+        <div class="step-actions">
+
+            <button type="button"
+                    class="continue-button"
+                    id="expenses-continue">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+        <!-- Debt Step -->
+    <div class="assessment-step hidden" id="debt-step">
+
+        <div class="step-header">
+
+            <h1>Your debts</h1>
+
+            <p>Do you currently have any debts?</p>
+
+        </div>
+
+
+        <div class="debt-options">
+
+            <label class="check-option">
+                <input type="radio" name="has-debt" value="yes" id="debt-yes">
+                <span>Yes</span>
+            </label>
+
+
+            <label class="check-option">
+                <input type="radio" name="has-debt" value="no" id="debt-no">
+                <span>No</span>
+            </label>
+
+        </div>
+
+
+        <div class="input-group hidden" id="debt-amount-group">
+
+            <label for="debt-amount">Total monthly debt payments (KSh)</label>
+
+            <input type="number"
+                id="debt-amount"
+                name="debt_amount"
+                placeholder="0"
+                min="0">
+
+        </div>
+
+
+        <div class="step-actions">
+
+            <button type="button"
+                    class="continue-button"
+                    id="debt-continue">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+        <!-- Emergency Fund Step -->
+    <div class="assessment-step hidden" id="emergency-step">
+
+        <div class="step-header">
+
+            <h1>Emergency savings</h1>
+
+            <p>How much do you currently have in emergency savings?</p>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="emergency-fund">Emergency savings amount (KSh)</label>
+
+            <input type="number"
+                id="emergency-fund"
+                name="emergency_fund"
+                placeholder="0"
+                min="0">
+
+        </div>
+
+
+        <div class="step-actions">
+
+            <button type="button"
+                    class="continue-button"
+                    id="emergency-continue">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+        <!-- Investment Status Step -->
+    <div class="assessment-step hidden" id="investment-step">
+
+        <div class="step-header">
+
+            <h1>Investments</h1>
+
+            <p>Do you currently invest?</p>
+
+        </div>
+
+
+        <div class="debt-options">
+
+            <label class="check-option">
+                <input type="radio" name="investing" value="yes" id="invest-yes">
+                <span>Yes</span>
+            </label>
+
+            <label class="check-option">
+                <input type="radio" name="investing" value="no" id="invest-no">
+                <span>No</span>
+            </label>
+
+        </div>
+
+
+        <div class="step-actions">
+
+            <button type="button"
+                    class="continue-button"
+                    id="investment-continue">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+        <!-- Investment Details Step -->
+    <div class="assessment-step hidden" id="investment-details-step">
+
+        <div class="step-header">
+
+            <h1>Investment details</h1>
+
+            <p>Tell us about your current investments.</p>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>Risk preference</label>
+
+            <div class="debt-options">
+
+                <label class="check-option">
+                    <input type="radio" name="risk-preference" value="low">
+                    <span>Low</span>
+                </label>
+
+                <label class="check-option">
+                    <input type="radio" name="risk-preference" value="medium">
+                    <span>Medium</span>
+                </label>
+
+                <label class="check-option">
+                    <input type="radio" name="risk-preference" value="high">
+                    <span>High</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="dividends">Monthly dividends received (KSh)</label>
+
+            <input type="number"
+                id="dividends"
+                name="dividends"
+                placeholder="0"
+                min="0">
+
+        </div>
+
+
+        <div class="step-actions">
+
+            <button type="button"
+                    class="continue-button"
+                    id="investment-details-continue">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+        <!-- Start Investing Step -->
+    <div class="assessment-step hidden" id="start-investing-step">
+
+        <div class="step-header">
+
+            <h1>Start investing</h1>
+
+            <p>Would you like to start investing in the future?</p>
+
+        </div>
+
+
+        <div class="debt-options">
+
+            <label class="check-option">
+                <input type="radio" name="start-investing" value="yes">
+                <span>Yes</span>
+            </label>
+
+            <label class="check-option">
+                <input type="radio" name="start-investing" value="no">
+                <span>No</span>
+            </label>
+
+        </div>
+
+
+        <div class="step-actions">
+
+            <button type="button"
+                    class="continue-button"
+                    id="start-investing-continue">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+        <!-- Review Step -->
+    <div class="assessment-step hidden" id="review-step">
+
+        <div class="step-header">
+
+            <h1>Review your information</h1>
+
+            <p>Please confirm your details before generating your financial assessment.</p>
+
+        </div>
+
+
+        <div class="review-list" id="review-list">
+
+            <div class="review-item">
+                <span>Profile</span>
+                <strong id="review-profile">-</strong>
+            </div>
+
+            <div class="review-item">
+                <span>Earned income</span>
+                <strong id="review-earned">-</strong>
+            </div>
+
+            <div class="review-item">
+                <span>Passive income</span>
+                <strong id="review-passive">-</strong>
+            </div>
+
+            <div class="review-item">
+                <span>Monthly expenses</span>
+                <strong id="review-expenses">-</strong>
+            </div>
+
+            <div class="review-item">
+                <span>Debt payments</span>
+                <strong id="review-debt">-</strong>
+            </div>
+
+            <div class="review-item">
+                <span>Emergency savings</span>
+                <strong id="review-emergency">-</strong>
+            </div>
+
+            <div class="review-item">
+                <span>Investing</span>
+                <strong id="review-investing">-</strong>
+            </div>
+
+        </div>
+
+
+        <div class="step-actions">
+
+            <button type="button"
+                    class="continue-button"
+                    id="submit-assessment">
+                Generate Assessment
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <form id="assessment-form"
+        method="POST"
+        action="/results"
+        class="hidden">
+
+        <input type="hidden" name="earned_income" id="form-earned-income">
+
+        <input type="hidden" name="passive_income" id="form-passive-income">
+
+        <input type="hidden" name="expenses" id="form-expenses">
+
+        <input type="hidden" name="total_debts" id="form-total-debts">
+
+        <input type="hidden" name="emergency_fund" id="form-emergency-fund">
+
+        <input type="hidden" name="risk_preference" id="form-risk-preference">
+
+        <input type="hidden" name="dividends" id="form-dividends">
+
+    </form>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+{% endblock %}

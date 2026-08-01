@@ -5,7 +5,7 @@ from pathlib import Path
 class KnowledgeBase:
    # LOading json
 
-    def __init__(self, filename="financial-advisor/knowledge.json"):
+    def __init__(self, filename="knowledge.json"):
         self.filename = Path(filename)
         self.data = self.load()
 

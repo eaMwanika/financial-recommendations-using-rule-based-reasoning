@@ -1,0 +1,174 @@
+/* Step Card */
+
+.step-card {
+
+    width: 100%;
+    max-width: 520px;
+
+    padding: 40px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+/* brand SEction */
+/* brand*/
+.brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    margin-bottom: 40px;
+}
+
+/* brand-icon */
+.brand-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--primary);
+    color: white;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+}
+
+.brand-icon:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+/*brand-text */
+.brand-text h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+
+    line-height: 1.2;
+}
+
+.brand-text p {
+    margin-top: 4px;
+
+    font-size: 13px;
+    font-weight: 400;
+
+    color: var(--text-light);
+}
+
+
+/* welcome-content*/
+
+.welcome-content {
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+
+.welcome-content h1 {
+    font-size: 32px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    color: var(--text);
+
+    margin-bottom: 12px;
+}
+
+
+.welcome-content p {
+    max-width: 480px;
+
+    margin: 0 auto;
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* welcome-action*/
+
+/* Welcome Action */
+
+.welcome-actions {
+    display: flex;
+    justify-content: center;
+}
+
+
+.start-link {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 32px;
+
+    background: var(--primary);
+
+    color: white;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+
+.start-link:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+}
+
+
+
+
+
+/* Mobile Responsiveness */
+
+@media (max-width: 600px) {
+
+    .step-card {
+        width: 90%;
+        padding: 28px;
+    }
+
+
+    .brand {
+        gap: 12px;
+    }
+
+
+    .brand-text h2 {
+        font-size: 18px;
+    }
+
+
+    .welcome-content h1 {
+        font-size: 26px;
+    }
+
+
+    .welcome-content p {
+        font-size: 14px;
+    }
+
+}
