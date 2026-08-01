@@ -1,20 +1,25 @@
 /* Step Card */
 
 .step-card {
-
     width: 100%;
-    max-width: 520px;
-
-    padding: 40px;
-
+    max-width: 820px;      /* wider cards */
+    padding: 48px;         /* more internal spacing */
     background: var(--surface);
-
     border: 1px solid var(--border);
-
-    border-radius: var(--radius);
-
+    border-radius: 28px;
     box-shadow: var(--shadow);
+    margin: 0 auto;
 }
+.page-shell,
+.assessment-shell {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 20px 48px;
+}
+
+    
+
 
 /* Top Bar */
 .assessment-topbar {
@@ -63,15 +68,12 @@
 }
 
 /* Wizard Progress */
-
-.wizard-progress {
-    margin-bottom: 28px;
-}
-
-.wizard-progress-text {
+.wizard-step-indicator {
+    margin: 0 0 24px;
     font-size: 14px;
+    font-weight: 600;
     color: var(--text-light);
-    margin-bottom: 10px;
+    text-align: center;
 }
 
 

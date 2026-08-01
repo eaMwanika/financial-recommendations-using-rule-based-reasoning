@@ -1,4 +1,4 @@
-/* ===== Results Page ===== */
+/*  Results Page  */
 
 .results-page {
     width: 100%;
@@ -8,7 +8,6 @@
 }
 
 
-/* ===== Header ===== */
 
 .results-header {
     text-align: center;
@@ -31,7 +30,6 @@
 }
 
 
-/* ===== Cards ===== */
 
 .results-card {
     background: var(--surface);
@@ -50,7 +48,7 @@
 }
 
 
-/* ===== Financial Summary Grid ===== */
+
 
 .results-grid {
     display: grid;
@@ -80,7 +78,7 @@
 }
 
 
-/* ===== Status Section ===== */
+/* status*/
 
 .status-list {
     display: flex;
@@ -109,7 +107,7 @@
 }
 
 
-/* ===== Recommendations ===== */
+/*  Recommendations  */
 
 .recommendation-list {
     display: flex;
@@ -141,16 +139,77 @@
     margin-bottom: 0;
 }
 
+/* ===== Action Plan (match recommendations) ===== */
 
-/* ===== Actions ===== */
-
-.results-actions {
+.action-plan-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 14px;
-    margin-top: 32px;
+    flex-direction: column;
+    gap: 18px;
 }
+
+.action-plan-card {
+    border: 1px solid #DDE7FF;
+    border-radius: 20px;
+    padding: 22px;
+    background: linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 100%);
+}
+
+.plan-priority {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #EEF3FF;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.action-plan-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.plan-objective {
+    margin-bottom: 16px;
+    line-height: 1.7;
+    color: var(--text);
+}
+
+.plan-steps {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.plan-steps li {
+    line-height: 1.7;
+    color: var(--text);
+}
+
+
+@media (max-width: 640px) {
+
+    .section-heading {
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .action-plan-card {
+        padding: 20px;
+    }
+
+    .plan-header h3 {
+        font-size: 21px;
+    }
+}
+
+/* buttons */
 
 .primary-button,
 .secondary-button {
@@ -192,7 +251,7 @@
 }
 
 
-/* ===== Responsive ===== */
+/* Responsive  */
 
 @media (max-width: 640px) {
 
@@ -216,4 +275,91 @@
     .secondary-button {
         width: 100%;
     }
+}
+
+/*  Investment Guidance */
+
+.investment-card {
+    position: relative;
+    border: 1px solid #D7E3FF;
+    border-radius: 24px;
+    padding: 28px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 100%);
+    box-shadow: 0 8px 24px rgba(18, 52, 120, 0.06);
+}
+
+.investment-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #EEF3FF;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.investment-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+}
+
+.investment-description {
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.investment-goal {
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: #FFFFFF;
+    border: 1px solid #E6ECFF;
+    margin-bottom: 18px;
+    color: var(--text);
+}
+
+.investment-products h4 {
+    margin-bottom: 12px;
+    color: var(--text);
+}
+
+.investment-products ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.investment-products li {
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: #FFFFFF;
+    border: 1px solid #E6ECFF;
+    color: var(--text);
+    position: relative;
+    padding-left: 38px;
+}
+
+.investment-products li::before {
+    content: '✓';
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

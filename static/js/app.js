@@ -12,6 +12,8 @@ function goToStep(currentStep, nextStep) {
     nextStep.classList.remove('hidden');
 
     wizardBack.classList.remove('hidden');
+
+    updateStepText(nextStep);
     
 }
 
@@ -25,6 +27,8 @@ wizardBack.onclick = function () {
         .forEach(step => step.classList.add('hidden'));
 
     previousStep.classList.remove('hidden');
+
+    updateStepText(previousStep);
 
     if (stepHistory.length === 0) {
         wizardBack.classList.add('hidden');
@@ -51,9 +55,30 @@ wizardBack.onclick = function () {
     const incomeAmountFields = document.getElementById('income-amount-fields');
     const debtAmountGroup = document.getElementById('debt-amount-group');
 
+    const currentStepLabel = document.getElementById('current-step');
+    const totalStepsLabel = document.getElementById('total-steps');
 
+    const stepOrder = [
+        profileStep,
+        incomeStep,
+        incomeAmountStep,
+        expensesStep,
+        debtStep,
+        emergencyStep,
+        investmentStep,
+        reviewStep
+    ];
 
-    
+    totalStepsLabel.textContent = stepOrder.length;
+
+    function updateStepText(activeStep) {
+
+        const index = stepOrder.indexOf(activeStep);
+
+        if (index === -1) return;
+
+        currentStepLabel.textContent = index + 1;
+    }
 
 
     
@@ -139,8 +164,9 @@ wizardBack.onclick = function () {
             `;
         });
 
-        incomeStep.classList.add('hidden');
-        incomeAmountStep.classList.remove('hidden');
+        
+        goToStep(incomeStep, incomeAmountStep);
+        
     };
 
     //  Income amounts 
@@ -280,6 +306,7 @@ wizardBack.onclick = function () {
 
         document.getElementById('assessment-form').submit();
         };
+    updateStepText(profileStep);
 
     
 

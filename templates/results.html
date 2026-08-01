@@ -154,6 +154,56 @@ block styles %}
 
   {% endif %}
 
+  {% if data.investment_guidance %}
+
+<div class="results-card">
+
+    <h2>Investment Guidance</h2>
+
+    {% for guide in data.investment_guidance %}
+
+    <article class="investment-card">
+
+        <div class="investment-badge">
+            {{ guide.risk_level }} Risk
+        </div>
+
+        <h3>{{ guide.title }}</h3>
+
+        <p class="investment-description">
+            {{ guide.description }}
+        </p>
+
+        <div class="investment-goal">
+            <strong>Investment Goal:</strong>
+            {{ guide.investment_goal }}
+        </div>
+
+        <div class="investment-products">
+
+            <h4>Suitable Products</h4>
+
+            <ul>
+
+                {% for product in guide.suitable_products %}
+                <li>{{ product }}</li>
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </article>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+
+
+
   <div class="results-actions">
     <a href="/assessment" class="primary-button"> Start New Assessment </a>
 
