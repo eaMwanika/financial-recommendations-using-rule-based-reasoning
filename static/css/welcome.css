@@ -1,0 +1,179 @@
+/* Step Card */
+
+.step-card {
+    width: 100%;
+    max-width: 820px;      /* wider cards */
+    padding: 48px;         /* more internal spacing */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    margin: 0 auto;
+
+    
+}
+.page-shell,
+.assessment-shell {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 20px 48px;
+}
+/* brand SEction */
+/* brand*/
+.brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    margin-bottom: 40px;
+}
+
+/* brand-icon */
+.brand-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--primary);
+    color: white;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+}
+
+.brand-icon:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+/*brand-text */
+.brand-text h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+
+    line-height: 1.2;
+}
+
+.brand-text p {
+    margin-top: 4px;
+
+    font-size: 13px;
+    font-weight: 400;
+
+    color: var(--text-light);
+}
+
+
+/* welcome-content*/
+
+.welcome-content {
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+
+.welcome-content h1 {
+    font-size: 32px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    color: var(--text);
+
+    margin-bottom: 12px;
+}
+
+
+.welcome-content p {
+    max-width: 480px;
+
+    margin: 0 auto;
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* welcome-action*/
+
+/* Welcome Action */
+
+.welcome-actions {
+    display: flex;
+    justify-content: center;
+}
+
+
+.start-link {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 32px;
+
+    background: var(--primary);
+
+    color: white;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+
+.start-link:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+}
+
+
+
+
+
+/* Mobile Responsiveness */
+
+@media (max-width: 600px) {
+
+    .step-card {
+        max-width: 100%;
+        padding: 28px 20px;
+        border-radius: 22px;
+    }
+
+
+    .brand {
+        gap: 12px;
+    }
+
+
+    .brand-text h2 {
+        font-size: 18px;
+    }
+
+
+    .welcome-content h1 {
+        font-size: 26px;
+    }
+
+
+    .welcome-content p {
+        font-size: 14px;
+    }
+
+}

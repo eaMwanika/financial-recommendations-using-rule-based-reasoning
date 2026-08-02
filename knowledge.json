@@ -1,471 +1,718 @@
 {
-  "metadata": {
-    "debt_ratio_limit": 0.30,
-    "emergency_months": 6,
+    "system": {
+        "name":"Personal Finance Advisor Expert System",
+        "version":"1.0",
+        "description":"A rule-based expert system for assessing financial health and generating personalized financial recommendations.",
+        "reasoning_method":"Forward Chaining",
+        "knowledge_engineer":"Viona GItonga",
+        "last-updated":"2026-07-26"
+    },
+    "financial_thresholds": {
 
-    "budget_model": {
-      "needs": 0.50,
-      "wants": 0.30,
-      "savings": 0.10,
-      "investment": 0.10
+    "debt": {
+
+        "healthy_ratio": 0.30,
+
+        "warning_ratio": 0.40
+
+    },
+
+    "emergency_fund": {
+
+        "minimum_months": 3,
+
+        "recommended_months": 6
+
+    },
+
+    "budget": {
+
+        "needs": 0.50,
+
+        "wants": 0.30,
+
+        "savings": 0.10,
+
+        "investments": 0.10
+
     }
 
+},
+"recommendations": {
+    "reduce_debt": {
+
+    "title": "Reduce Debt",
+
+    "summary": "Prioritize reducing your monthly debt obligations.",
+
+    "explanation": "High debt repayments reduce your ability to save, invest, and respond to financial emergencies.",
+
+    "benefit": "Reducing debt improves financial flexibility and increases long-term financial stability."
+
+},
+"build_emergency_fund": {
+
+    "title": "Build an Emergency Fund",
+
+    "summary": "Increase your emergency savings before pursuing major investments.",
+
+    "explanation": "Emergency savings protect you against unexpected financial events such as job loss or medical emergencies.",
+
+    "benefit": "A healthy emergency fund reduces financial stress and prevents unnecessary borrowing."
+
+},
+"improve_budget": {
+
+    "title": "Improve Budgeting",
+
+    "summary": "Review your monthly spending and align it with your income.",
+
+    "explanation": "Effective budgeting helps ensure that essential expenses, savings, and investments remain balanced.",
+
+    "benefit": "Improved budgeting creates opportunities for saving and achieving long-term financial goals."
+
+},
+"start_investing": {
+
+    "title": "Begin Investing",
+
+    "summary": "Consider starting a long-term investment plan.",
+
+    "explanation": "Your financial situation indicates readiness to begin building long-term wealth through investing.",
+
+    "benefit": "Consistent investing can help grow your wealth and support future financial goals."
+
+},
+"maintain_financial_health": {
+
+    "title": "Maintain Your Financial Health",
+
+    "summary": "Continue following your current financial habits.",
+
+    "explanation": "Your financial profile demonstrates healthy budgeting, manageable debt, and good financial preparedness.",
+
+    "benefit": "Maintaining these habits supports long-term financial security."
+
+},
+"increase_savings": {
+
+    "title": "Increase Monthly Savings",
+
+    "summary": "Allocate a larger portion of your income toward savings.",
+
+    "explanation": "Regular saving strengthens financial resilience and supports future financial objectives.",
+
+    "benefit": "Higher savings improve your ability to manage emergencies and invest in future opportunities."
+
+}
+
+
+},
+"action_plans": {
+    "reduce_debt": {
+
+    "priority": 1,
+
+    "title": "Debt Reduction Plan",
+
+    "objective": "Lower your monthly debt burden and improve financial flexibility.",
+
+    "steps": [
+
+        "Pay high-interest debt before lower-interest debt.",
+
+        "Avoid taking on new unnecessary debt.",
+
+        "Use any additional income to make extra debt repayments.",
+
+        "Review your debt-to-income ratio every month."
+
+    ]
+
+},
+"build_emergency_fund": {
+
+    "priority": 2,
+
+    "title": "Emergency Savings Plan",
+
+    "objective": "Build sufficient savings to cover unexpected financial emergencies.",
+
+    "steps": [
+
+        "Set a monthly savings target.",
+
+        "Keep emergency savings in an easily accessible account.",
+
+        "Aim to save at least three to six months of essential expenses.",
+
+        "Avoid using emergency savings for non-emergency spending."
+
+    ]
+
+},
+"improve_budget": {
+
+    "priority": 3,
+
+    "title": "Budget Improvement Plan",
+
+    "objective": "Improve spending habits and increase financial stability.",
+
+    "steps": [
+
+        "Track all monthly expenses.",
+
+        "Reduce unnecessary lifestyle spending.",
+
+        "Follow the 50:30:10:10 budgeting model.",
+
+        "Review your budget at the end of each month."
+
+    ]
+
+},
+"increase_savings": {
+
+    "priority": 4,
+
+    "title": "Savings Growth Plan",
+
+    "objective": "Increase the amount of money saved each month.",
+
+    "steps": [
+
+        "Automate monthly savings transfers.",
+
+        "Save before spending.",
+
+        "Increase savings whenever income increases.",
+
+        "Review savings progress every month."
+
+    ]
+
+},
+"start_investing": {
+
+    "priority": 5,
+
+    "title": "Investment Readiness Plan",
+
+    "objective": "Begin building long-term wealth through appropriate investments.",
+
+    "steps": [
+
+        "Maintain a healthy emergency fund.",
+
+        "Invest consistently instead of occasionally.",
+
+        "Choose investments that match your risk profile.",
+
+        "Review your investment portfolio periodically."
+
+    ]
+
+}
+
+},
+
+"investment_guidance": {
+    "conservative": {
+
+    "title": "Conservative Investor",
+
+    "description": "Focus on preserving capital while earning steady, lower-risk returns.",
+
+    "suitable_products": [
+
+        "Money Market Funds",
+
+        "Treasury Bills",
+
+        "Treasury Bonds",
+
+        "Fixed Deposit Accounts"
+
+    ],
+
+    "investment_goal": "Capital preservation and stable income.",
+
+    "risk_level": "low"
+
+},
+"moderate": {
+
+    "title": "Moderate Investor",
+
+    "description": "Balance investment growth with acceptable levels of risk.",
+
+    "suitable_products": [
+
+        "Balanced Mutual Funds",
+
+        "Government Bonds",
+
+        "Corporate Bonds",
+
+        "Diversified Unit Trusts"
+
+    ],
+
+    "investment_goal": "Balanced growth and income.",
+
+    "risk_level": "medium"
+
+},
+"aggressive": {
+
+    "title": "Aggressive Investor",
+
+    "description": "Seek long-term capital growth while accepting higher market risk.",
+
+    "suitable_products": [
+
+        "Stocks",
+
+        "Equity Mutual Funds",
+
+        "Exchange Traded Funds (ETFs)",
+
+        "Real Estate Investment Trusts (REITs)"
+
+    ],
+
+    "investment_goal": "Long-term wealth creation.",
+
+    "risk_level": "high"
+
+}
+
+},
+"rules": {
+  "debt_assessment": [
+  {
+    "id": "R001",
+    "description": "Debt ratio is within the healthy threshold.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "debt_ratio",
+        "operator": "<=",
+        "operand": "financial_thresholds.debt.healthy_ratio"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "debt_burden",
+        "value": "low"
+      }
+    ]
   },
-
-  "inference_rules": [
-
-    {
-      "id": "IR1",
-      "category": "Income",
-      "conditions": [
-        {
-          "field": "total_income",
-          "operator": ">",
-          "value": 0
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "has_income",
-        "value": true
+  {
+    "id": "R002",
+    "description": "Debt ratio is between the healthy and warning thresholds.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "debt_ratio",
+        "operator": ">",
+        "operand": "financial_thresholds.debt.healthy_ratio"
+      },
+      {
+        "field": "debt_ratio",
+        "operator": "<=",
+        "operand": "financial_thresholds.debt.warning_ratio"
       }
-    },
-
-    {
-      "id": "IR2",
-      "category": "Income",
-      "conditions": [
-        {
-          "field": "total_income",
-          "operator": "<=",
-          "value": 0
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "has_income",
-        "value": false
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "debt_burden",
+        "value": "moderate"
       }
-    },
-
-    {
-      "id": "IR3",
-      "category": "Budget",
-      "conditions": [
-        {
-          "field": "expenses",
-          "operator": "<=",
-          "field_compare": "recommended_expenses"
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "within_budget",
-        "value": true
+    ]
+  },
+  {
+    "id": "R003",
+    "description": "Debt ratio exceeds the warning threshold.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "debt_ratio",
+        "operator": ">",
+        "operand": "financial_thresholds.debt.warning_ratio"
       }
-    },
-
-    {
-      "id": "IR4",
-      "category": "Budget",
-      "conditions": [
-        {
-          "field": "expenses",
-          "operator": ">",
-          "field_compare": "recommended_expenses"
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "within_budget",
-        "value": false
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "debt_burden",
+        "value": "high"
       }
-    },
-
-    {
-      "id": "IR5",
-      "category": "Emergency Fund",
-      "conditions": [
-        {
-          "field": "current_emergency_fund",
-          "operator": ">=",
-          "field_compare": "emergency_fund_target"
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "emergency_fund_sufficient",
-        "value": true
-      }
-    },
-
-    {
-      "id": "IR6",
-      "category": "Emergency Fund",
-      "conditions": [
-        {
-          "field": "current_emergency_fund",
-          "operator": "<",
-          "field_compare": "emergency_fund_target"
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "emergency_fund_sufficient",
-        "value": false
-      }
-    },
-
-    {
-      "id": "IR7",
-      "category": "Debt",
-      "conditions": [
-        {
-          "field": "debt_to_income_ratio",
-          "operator": "<=",
-          "value": 0.30
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "debt_manageable",
-        "value": true
-      }
-    },
-
-    {
-      "id": "IR8",
-      "category": "Debt",
-      "conditions": [
-        {
-          "field": "debt_to_income_ratio",
-          "operator": ">",
-          "value": 0.30
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "debt_manageable",
-        "value": false
-      }
-    },
-
-    {
-      "id": "IR9",
-      "category": "Investment Eligibility",
-      "conditions": [
-        {
-          "field": "emergency_fund_sufficient",
-          "operator": "==",
-          "value": true
-        },
-        {
-          "field": "debt_manageable",
-          "operator": "==",
-          "value": true
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "eligible_to_invest",
-        "value": true
-      }
-    },
-
-    {
-      "id": "IR10",
-      "category": "Investment Eligibility",
-      "conditions": [
-        {
-          "field": "emergency_fund_sufficient",
-          "operator": "==",
-          "value": false
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "eligible_to_invest",
-        "value": false
-      }
-    },
-
-    {
-      "id": "IR11",
-      "category": "Investment Eligibility",
-      "conditions": [
-        {
-          "field": "debt_manageable",
-          "operator": "==",
-          "value": false
-        }
-      ],
-      "action": {
-        "type": "infer",
-        "fact": "eligible_to_invest",
-        "value": false
-      }
-    }
-
-  ],
-
-  "recommendation_rules": [
-
-    {
-      "id": "RR1",
-      "category": "Budget",
-      "title": "Budget Warning",
-      "conditions": [
-        {
-          "field": "within_budget",
-          "operator": "==",
-          "value": false
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Reduce unnecessary spending to stay within your recommended budget."
-      }
-    },
-
-    {
-      "id": "RR2",
-      "category": "Budget",
-      "title": "Budget Status",
-      "conditions": [
-        {
-          "field": "within_budget",
-          "operator": "==",
-          "value": true
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Your spending is within the recommended budget."
-      }
-    },
-
-    {
-      "id": "RR3",
-      "category": "Emergency Fund",
-      "title": "Build Emergency Fund",
-      "conditions": [
-        {
-          "field": "emergency_fund_sufficient",
-          "operator": "==",
-          "value": false
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Continue building your emergency fund before investing."
-      }
-    },
-
-    {
-      "id": "RR4",
-      "category": "Emergency Fund",
-      "title": "Redirect Investments",
-      "conditions": [
-        {
-          "field": "emergency_fund_sufficient",
-          "operator": "==",
-          "value": false
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Redirect your planned investment allocation into your emergency fund until the target is reached."
-      }
-    },
-
-    {
-      "id": "RR5",
-      "category": "Emergency Fund",
-      "title": "Emergency Fund Ready",
-      "conditions": [
-        {
-          "field": "emergency_fund_sufficient",
-          "operator": "==",
-          "value": true
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Your emergency fund is sufficient."
-      }
-    },
-
-    {
-      "id": "RR6",
-      "category": "Debt",
-      "title": "Reduce Monthly Debt Payments",
-      "conditions": [
-        {
-          "field": "debt_manageable",
-          "operator": "==",
-          "value": false
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Your monthly debt payments exceed the recommended 30% of your monthly income. Consider reducing your debt obligations before increasing discretionary spending or investments."
-      }
-    },
-
-    {
-      "id": "RR7",
-      "category": "Debt",
-      "title": "Debt Repayment Plan",
-      "conditions": [
-        {
-          "field": "debt_manageable",
-          "operator": "==",
-          "value": false
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Develop a repayment plan to gradually reduce your monthly debt payments while maintaining essential living expenses."
-      }
-    },
-
-    {
-      "id": "RR8",
-      "category": "Debt",
-      "title": "Health Debt Level",
-      "conditions": [
-        {
-          "field": "debt_manageable",
-          "operator": "==",
-          "value": true
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Your monthly debt payments are within the recommended limit and appear to be financially manageable."
-      }
-    },
-
-    {
-      "id": "RR9",
-      "category": "Debt",
-      "title": "Maintain Good Debt Management",
-      "conditions": [
-        {
-          "field": "debt_manageable",
-          "operator": "==",
-          "value": true
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Continue making debt payments on time and avoid taking on unnecessary new debt to maintain your current financial position."
-      }
-    },
-
-    {
-      "id": "RR10",
-      "category": "Investment",
-      "title": "Low Risk Investment",
-      "conditions": [
-        {
-          "field": "eligible_to_invest",
-          "operator": "==",
-          "value": true
-        },
-        {
-          "field": "risk_preference",
-          "operator": "==",
-          "value": "Risk Averse"
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Consider investing in a Money Market Fund (MMF)."
-      }
-    },
-
-    {
-      "id": "RR11",
-      "category": "Investment",
-      "title": "Medium Risk Investment",
-      "conditions": [
-        {
-          "field": "eligible_to_invest",
-          "operator": "==",
-          "value": true
-        },
-        {
-          "field": "risk_preference",
-          "operator": "==",
-          "value": "Risk Neutral"
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Consider Treasury Bills, Treasury Bonds, or ETFs."
-      }
-    },
-
-    {
-      "id": "RR12",
-      "category": "Investment",
-      "title": "High Risk Investment",
-      "conditions": [
-        {
-          "field": "eligible_to_invest",
-          "operator": "==",
-          "value": true
-        },
-        {
-          "field": "risk_preference",
-          "operator": "==",
-          "value": "Risk Tolerant"
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Consider diversified stocks, equity mutual funds, or REITs."
-      }
-    },
-
-    {
-      "id": "RR13",
-      "category": "Dividends",
-      "title": "Dividend Income",
-      "conditions": [
-        {
-          "field": "dividends_received",
-          "operator": ">",
-          "value": 0
-        }
-      ],
-      "action": {
-        "type": "recommend",
-        "message": "Your dividend income has increased your monthly cash flow. Consider including it in your long-term investment pan."
-      }
-    },
-    {
-  "id": "RR14",
-  "category": "Dividends",
-  "title": "Dividend Income",
-  "conditions": [
-    {
-      "field": "dividends_received",
-      "operator": "==",
-      "value": 0
-    },
-    {
-      "field": "eligible_to_invest",
-      "operator": "==",
-      "value": true
-    }
-  ],
-  "action": {
-    "type": "recommend",
-    "message": "Consider investments that can generate dividend income."
+    ]
   }
+],
+"budget_assessment": [
+  {
+    "id": "R004",
+    "description": "Monthly expenses are within the recommended budget.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "expenses",
+        "operator": "<=",
+        "operand": "recommended_expenses"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "budget_status",
+        "value": "healthy"
+      }
+    ]
+  },
+  {
+    "id": "R005",
+    "description": "Monthly expenses exceed the recommended budget.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "expenses",
+        "operator": ">",
+        "operand": "recommended_expenses"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "budget_status",
+        "value": "needs_improvement"
+      }
+    ]
+  }
+],
+"emergency_fund_assessment": [
+  {
+    "id": "R006",
+    "description": "Emergency fund meets the recommended level.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "emergency_months",
+        "operator": ">=",
+        "operand": "financial_thresholds.emergency_fund.recommended_months"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "emergency_status",
+        "value": "healthy"
+      }
+    ]
+  },
+  {
+    "id": "R007",
+    "description": "Emergency fund meets the minimum acceptable level.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "emergency_months",
+        "operator": ">=",
+        "operand": "financial_thresholds.emergency_fund.minimum_months"
+      },
+      {
+        "field": "emergency_months",
+        "operator": "<",
+        "operand": "financial_thresholds.emergency_fund.recommended_months"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "emergency_status",
+        "value": "adequate"
+      }
+    ]
+  },
+  {
+    "id": "R008",
+    "description": "Emergency fund is below the minimum recommended level.",
+    "priority": 1,
+    "conditions": [
+      {
+        "field": "emergency_months",
+        "operator": "<",
+        "operand": "financial_thresholds.emergency_fund.minimum_months"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "emergency_status",
+        "value": "inadequate"
+      }
+    ]
+  }
+],
+"investment_readiness": [
+  {
+    "id": "R009",
+    "description": "Client is financially ready to begin investing.",
+    "priority": 2,
+    "conditions": [
+      {
+        "field": "budget_status",
+        "operator": "==",
+        "operand": "healthy"
+      },
+      {
+        "field": "debt_burden",
+        "operator": "==",
+        "operand": "low"
+      },
+      {
+        "field": "emergency_status",
+        "operator": "==",
+        "operand": "healthy"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "investment_ready",
+        "value": true
+      }
+    ]
+  },
+  {
+    "id": "R010",
+    "description": "Client is not financially ready to invest.",
+    "priority": 2,
+    "conditions": [
+      {
+        "field": "debt_burden",
+        "operator": "==",
+        "operand": "high"
+      }
+    ],
+    "actions": [
+      {
+        "type": "derive_fact",
+        "fact": "investment_ready",
+        "value": false
+      }
+    ]
+  }
+],
+"recommendation_rules": [
+  {
+    "id": "R011",
+    "description": "Recommend debt reduction when debt burden is high.",
+    "priority": 3,
+    "conditions": [
+      {
+        "field": "debt_burden",
+        "operator": "==",
+        "operand": "high"
+      }
+    ],
+    "actions": [
+      {
+        "type": "recommendation",
+        "value": "reduce_debt"
+      },
+      {
+        "type": "action_plan",
+        "value": "reduce_debt"
+      }
+    ]
+  },
+  {
+    "id": "R012",
+    "description": "Recommend building an emergency fund when savings are inadequate.",
+    "priority": 3,
+    "conditions": [
+      {
+        "field": "emergency_status",
+        "operator": "==",
+        "operand": "inadequate"
+      }
+    ],
+    "actions": [
+      {
+        "type": "recommendation",
+        "value": "build_emergency_fund"
+      },
+      {
+        "type": "action_plan",
+        "value": "build_emergency_fund"
+      }
+    ]
+  },
+  {
+    "id": "R013",
+    "description": "Recommend improving budgeting when expenses exceed the recommended level.",
+    "priority": 3,
+    "conditions": [
+      {
+        "field": "budget_status",
+        "operator": "==",
+        "operand": "needs_improvement"
+      }
+    ],
+    "actions": [
+      {
+        "type": "recommendation",
+        "value": "improve_budget"
+      },
+      {
+        "type": "action_plan",
+        "value": "improve_budget"
+      }
+    ]
+  },
+  {
+    "id": "R014",
+    "description": "Recommend beginning long-term investing when financially ready.",
+    "priority": 3,
+    "conditions": [
+      {
+        "field": "investment_ready",
+        "operator": "==",
+        "operand": true
+      }
+    ],
+    "actions": [
+      {
+        "type": "recommendation",
+        "value": "start_investing"
+      },
+      {
+        "type": "action_plan",
+        "value": "start_investing"
+      }
+    ]
+  },
+  {
+    "id": "R015",
+    "description": "Encourage users with excellent financial health to maintain their habits.",
+    "priority": 3,
+    "conditions": [
+      {
+        "field": "budget_status",
+        "operator": "==",
+        "operand": "healthy"
+      },
+      {
+        "field": "debt_burden",
+        "operator": "==",
+        "operand": "low"
+      },
+      {
+        "field": "emergency_status",
+        "operator": "==",
+        "operand": "healthy"
+      }
+    ],
+    "actions": [
+      {
+        "type": "recommendation",
+        "value": "maintain_financial_health"
+      }
+    ]
+  }
+],
+"investment_profile_rules": [
+  {
+    "id": "R016",
+    "description": "Provide conservative investment guidance for financially ready risk-averse clients.",
+    "priority": 4,
+    "conditions": [
+      {
+        "field": "investment_ready",
+        "operator": "==",
+        "operand": true
+      },
+      {
+        "field": "risk_preference",
+        "operator": "==",
+        "operand": "low"
+      }
+    ],
+    "actions": [
+      {
+        "type": "investment_guidance",
+        "value": "low"
+      }
+    ]
+  },
+  {
+    "id": "R017",
+    "description": "Provide moderate investment guidance for financially ready risk-neutral clients.",
+    "priority": 4,
+    "conditions": [
+      {
+        "field": "investment_ready",
+        "operator": "==",
+        "operand": true
+      },
+      {
+        "field": "risk_preference",
+        "operator": "==",
+        "operand": "medium"
+      }
+    ],
+    "actions": [
+      {
+        "type": "investment_guidance",
+        "value": "medium"
+      }
+    ]
+  },
+  {
+    "id": "R018",
+    "description": "Provide aggressive investment guidance for financially ready risk-tolerant clients.",
+    "priority": 4,
+    "conditions": [
+      {
+        "field": "investment_ready",
+        "operator": "==",
+        "operand": true
+      },
+      {
+        "field": "risk_preference",
+        "operator": "==",
+        "operand": "high"
+      }
+    ],
+    "actions": [
+      {
+        "type": "investment_guidance",
+        "value": "high"
+      }
+    ]
+  }
+  
+
+
+]
+
+
+
+
+
+
 }
 
-  ]
+
+
+
+
+
+
 }
+

@@ -1,85 +1,126 @@
+import re
 from flask import Flask, render_template, request
 
+from financial_calculator import FinancialCalculator
 from knowledge_base import KnowledgeBase
-from financialCalculator import FinancialCalculator
-from InferenceEngine import InferenceEngine
+from Inference_engine import InferenceEngine
+
 
 app = Flask(__name__)
 
-kb = KnowledgeBase()
-print("Inference Rules:", len(kb.get_inference_rules()))
-print("Recommendation Rules:", len(kb.get_recommendation_rules()))
-calculator = FinancialCalculator(kb)
-engine = InferenceEngine(kb)
+# Initialize expert system components
+calculator = FinancialCalculator()
+knowledge_base = KnowledgeBase('knowledge.json')
+engine = InferenceEngine(knowledge_base)
 
-# landing Page
-@app.route("/")
-def landing():
-    return render_template("landing.html")
 
-# Assessment Page
-@app.route("/assessment")
+@app.route('/')
+def welcome():
+    return render_template('welcome.html')
+
+
+@app.route('/assessment')
 def assessment():
-    return render_template("assessment.html")
+    return render_template('assessment.html')
 
-# Results page
-@app.route("/analyze", methods=["POST"])
-def analyze():
+@app.route('/chat')
+def chat():
+    return render_template('chat.html')
+def extract_amount(pattern, text):
 
-    facts = {
+    match = re.search(pattern, text)
 
-        "earned_income": float(request.form["earned_income"]),
+    if not match:
+        return 0
 
-        "passive_income": float(request.form["passive_income"]),
+    value = match.group(1).replace(',', '')
 
-        "dividends_received": float(request.form["dividends_received"]),
+    return float(value)
+@app.route('/chat-assessment', methods=['POST'])
+def chat_assessment():
 
-        "interest_from_savings": float(request.form["interest_from_savings"]),
+    text = request.form['message'].lower()
+    allowance = extract_amount(r'allowance[^\d]*(\d[\d,]*)', text)
+    salary    = extract_amount(r'salary[^\d]*(\d[\d,]*)', text)
+    business  = extract_amount(r'business[^\d]*(\d[\d,]*)', text)
 
-        "expenses": float(request.form["expenses"]),
-        
-        "monthly_debt_payment": float(request.form["monthly_debt_payment"]),
+    expenses  = extract_amount(r'(?:spend|expenses)[^\d]*(\d[\d,]*)', text)
+    debt      = extract_amount(r'debt[^\d]*(\d[\d,]*)', text)
+    savings   = extract_amount(r'(?:savings|emergency)[^\d]*(\d[\d,]*)', text)
 
-        "current_emergency_fund": float(request.form["current_emergency_fund"]),
+    
+    earned_income = allowance + salary + business
 
-        "risk_preference": request.form["risk_preference"]
+    risk = 'low'
 
-    }
+    if 'medium risk' in text or 'moderate risk' in text:
+        risk = 'medium'
 
-    # Perform calculations
-    calculated_facts = calculator.calculate(facts)
+    elif 'high risk' in text or 'aggressive' in text:
+        risk = 'high'
 
-    # Run the expert system
-    report = engine.analyze(calculated_facts)
+    calculator = FinancialCalculator()
 
-    print("\n REPORT")
-    print(report)
-
-    report["facts"]["debt_ratio_percent"] = (
-    report["facts"]["debt_to_income_ratio"] * 100
-)
-    # grouped recommendations
-    grouped_recommendations = {}
-    for recommendation in report["recommendations"]:
-        category = recommendation["category"]
-        if category not in grouped_recommendations:
-            grouped_recommendations[category]=[]
-        grouped_recommendations[category].append(recommendation)
-
-
-    print("\nGrouped Recommendations")
-    print(grouped_recommendations)
-            
-
-
-
-    # Display results
-    return render_template(
-        "results.html",
-        report=report,
-        grouped_recommendations=grouped_recommendations
+    facts = calculator.prepare_facts(
+        earned_income=earned_income,
+        passive_income=0,
+        dividends=0,
+        interest=0,
+        expenses=expenses,
+        monthly_debt_payments=debt,
+        emergency_fund=savings,
+        risk_preference=risk
     )
 
+    kb = KnowledgeBase('knowledge.json')
+    engine = InferenceEngine(kb)
 
-if __name__ == "__main__":
+    results = engine.infer(facts)
+
+    return render_template('results.html', data=results)
+
+
+
+
+
+
+@app.route('/results', methods=['POST'])
+def results():
+
+
+
+
+    # ===== Form data =====
+    earned_income = float(request.form.get('earned_income', 0))
+    passive_income = float(request.form.get('passive_income', 0))
+    expenses = float(request.form.get('expenses', 0))
+    monthly_debt_payments = float(request.form.get('total_debts', 0))
+    emergency_fund = float(request.form.get('emergency_fund', 0))
+    risk_preference = request.form.get('risk_preference', 'low')
+    dividends = float(request.form.get('dividends', 0))
+
+    # Not collected yet in the wizard
+    interest = 0
+
+    # ===== Financial calculations =====
+    facts = calculator.prepare_facts(
+        earned_income=earned_income,
+        passive_income=passive_income,
+        dividends=dividends,
+        interest=interest,
+        expenses=expenses,
+        monthly_debt_payments=monthly_debt_payments,
+        emergency_fund=emergency_fund,
+        risk_preference=risk_preference
+    )
+
+    # ===== Expert system inference =====
+    results_data = engine.infer(facts)
+
+    return render_template('results.html', data=results_data)
+
+
+
+
+if __name__ == '__main__':
     app.run(debug=True)

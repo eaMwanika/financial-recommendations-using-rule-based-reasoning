@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/welcome.css') }}"
+/>
+{% endblock %} {% block title %}Welcome | Personal Finance Advisor{% endblock %}
+{% block content %}
+<section class="step-card">
+  <div class="brand">
+    <div class="brand-icon">
+      <i class="fa-solid fa-wallet"></i>
+    </div>
+
+    <div class="brand-text">
+      <h2>Personal Finance Advisor</h2>
+      <p>Personalized financial guidance</p>
+    </div>
+  </div>
+
+  <div class="welcome-content">
+    <h1>Know where you stand financially</h1>
+
+    <p>
+      Assess your income, expenses, debt, emergency savings, and investment
+      readiness through a guided financial assessment.
+    </p>
+  </div>
+
+  <div class="welcome-actions">
+    <a href="/assessment" class="start-link"> Get Started </a>
+  </div>
+</section>
+{% endblock %}

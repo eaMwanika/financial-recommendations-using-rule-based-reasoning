@@ -10,7 +10,7 @@ class KnowledgeBase:
         self.data = self.load()
 
     def load(self):
-        """Load the JSON knowledge base."""
+        #Load the JSON knowledge base.#
         try:
             with open(self.filename, "r", encoding="utf-8") as file:
                 return json.load(file)
@@ -25,34 +25,41 @@ class KnowledgeBase:
                 f"Invalid JSON format: {e}"
             )
 
-
-
-    def get_metadata(self):
-        return self.data.get("metadata", {})
-
-    def get_budget_model(self):
-        metadata = self.get_metadata()
-        return metadata.get("budget_model", {})
-
-    def get_debt_ratio_limit(self):
-        metadata = self.get_metadata()
-        return metadata.get("debt_ratio_limit", 0.30)
-
-    def get_emergency_months(self):
-        metadata = self.get_metadata()
-        return metadata.get("emergency_months", 6)
-
-
-    def get_inference_rules(self):
-        return self.data.get("inference_rules", [])
-
-    def get_recommendation_rules(self):
-        return self.data.get(
-            "recommendation_rules",
-            []
-        )
-
     
+    def get_system(self):
+        # return system information#
+        return self.data.get("system", {})
+    
+    def get_financial_thresholds(self):
+        return self.data.get("financial_thresholds", {})
+    
+    def get_recommendations(self):
+        return self.data.get("recommendations",{})
+    
+    def get_action_plans(self):
+        return self.data.get("action_plans", {})
+    
+    def get_investment_guidance(self):
+        return self.data.get("investment_guidance", {})
+    
+    def get_rules(self):
+        return self.data.get("rules", {})
+    
+    def get_value(self,path):
+        current = self.data
+        
+        for key in path.split("."):
+            if isinstance(current, dict) and key in current:
+                current = current[key]
+            else:
+                raise KeyError(
+                    f"Knowledge path '{path}' not found."
+                )
+        return current
+    
+
+
+
 
     def reload(self):
        
