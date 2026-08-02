@@ -9,7 +9,8 @@ class FinancialCalculator:
         expenses,
         monthly_debt_payments,
         emergency_fund,
-        risk_preference
+        risk_preference,
+        currently_investing=False
     ):
         total_income = self.calculate_total_income(
             earned_income,
@@ -64,7 +65,9 @@ class FinancialCalculator:
             "emergency_fund": emergency_fund,
             "emergency_months": emergency_months,
             
-            "risk_preference": risk_preference
+            "risk_preference": risk_preference,
+            
+            "currently_investing": currently_investing
             
         }
         return facts

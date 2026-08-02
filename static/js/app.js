@@ -296,6 +296,11 @@ wizardBack.onclick = function () {
         document.getElementById('form-dividends').value =
             document.getElementById('dividends')?.value || 0;
 
+        document.getElementById('form-currently-investing').value =
+            document.getElementById('invest-yes').checked ? 'yes' : 'no';
+
+            
+
         const selectedRisk =
             document.querySelector('input[name="risk-preference"]:checked');
 
