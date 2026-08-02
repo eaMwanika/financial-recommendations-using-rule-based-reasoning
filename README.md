@@ -60,8 +60,8 @@ financial-recommendations-using-rule-based-reasoning/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Onavee/personal-finance-advisor.git
-cd personal-finance-advisor
+git clone https://github.com/eaMwanika/financial-recommendations-using-rule-based-reasoning
+cd financial-recommendations-using-rule-based-reasoning
 ```
 
 ### 2. Create a virtual environment
