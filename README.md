@@ -136,7 +136,7 @@ The system extracts the financial facts, evaluates them using the expert system,
 
 ## Author
 
-** APT3020 Summer 2026 Group **
+**APT3020 Summer 2026 Group**
 
 Software Engineering Student's
 
