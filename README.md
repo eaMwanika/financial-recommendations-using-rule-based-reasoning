@@ -1,103 +1,143 @@
-# financial-recommendations-using-rule-based-reasoning
-A class project to demonstrate financial recommendations using rule-based reasoning
+# Personal Finance Advisor Expert System
 
-##  Project Overview
-This project implements a **Knowledge-Based System (KBS)** that provides financial recommendations in key areas of personal finance. The system uses **facts** and **rules** to reason about a user’s financial situation and generate actionable advice. The goal is to demonstrate how rule-based reasoning can support decision-making in budgeting, saving, emergency funds, investments, and debt management.
+## Project Overview
 
----
+Personal Finance Advisor Expert System is a Flask-based rule-based expert system that evaluates a user’s financial health and generates personalized recommendations. The system combines a financial calculator, a knowledge base, and a forward-chaining inference engine to provide budgeting guidance, debt assessment, emergency fund analysis, investment readiness evaluation, and tailored action plans.
 
-## Problem Being Solved
-Managing personal finances requires balancing multiple priorities:
-- Creating a sustainable **budget**
-- Building **savings** habits
-- Maintaining an **emergency fund**
-- Making informed **investment** decisions
-- Handling **debt** responsibly
+## Features
 
-This KBS helps users by applying structured rules to facts about their financial situation, producing clear recommendations.
+- Multi-step financial assessment wizard
+- Conversational “Chat with Advisor” assessment mode
+- Rule-based financial reasoning using forward chaining
+- Budget analysis based on the 50:30:10:10 model
+- Debt-to-income ratio assessment
+- Emergency fund adequacy evaluation
+- Investment readiness analysis
+- Personalized recommendations and action plans
+- Responsive user interface with professional styling
 
----
+## System Architecture
 
-##  Knowledge Base Structure
+User Interface (Wizard / Chat) → Flask Application → Financial Calculator → Inference Engine → Knowledge Base (JSON Rules) → Results Page
 
-### Facts
-Examples of facts the system may store:
-- Monthly income
-- Monthly expenses
-- Current savings balance
-- Existing debt amount
-- Emergency fund status
-- Investment portfolio size
+## Technologies Used
 
-### Rules
-The system applies rules such as:
-- **Budgeting Rule:** IF expenses > income THEN recommend reducing discretionary spending.
-- **Saving Rule:** IF savings < 20% of income THEN recommend increasing monthly savings contributions.
-- **Emergency Fund Rule:** IF emergency fund < 3 months of expenses THEN recommend prioritizing emergency fund contributions.
-- **Investment Rule:** IF emergency fund is sufficient AND savings rate ≥ 20% THEN recommend investing surplus funds.
-- **Debt Management Rule:** IF debt-to-income ratio > 40% THEN recommend debt repayment strategies before new investments.
+- Python 3
+- Flask
+- HTML5
+- CSS3
+- JavaScript
+- JSON (knowledge representation)
 
-### Conclusions
-Based on facts and rules, the system can conclude:
-- “You should reduce discretionary spending.”
-- “Increase monthly savings by 10%.”
-- “Prioritize building your emergency fund.”
-- “Consider investing in diversified assets.”
-- “Focus on debt repayment before investing.”
+## Project Structure
 
----
-
-##  How Inference Works
-1. **User Input:** The system accepts facts about the user’s financial situation.
-2. **Rule Matching:** It applies rules to these facts.
-3. **Reasoning:** Multi-step reasoning is supported (e.g., debt rules may override investment rules).
-4. **Output:** The system generates recommendations and explains the reasoning behind them.
-
----
-
-##  How to Run the System
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/eaMwanika/financial-recommendations-using-rule-based-reasoning
-   cd financial-recommendations-using-rule-based-reasoning
-   pip install -r requirements.txt
-   ```
-2. Run the web app: `python app.py`, then open `http://127.0.0.1:5000`.
-
----
-
-## Additional Components (Testing, CLI, Knowledge Acquisition)
-
-These were added on top of the existing `KnowledgeBase` / `FinancialCalculator`
-/ `InferenceEngine` modules and `knowledge.json` — no existing files were
-modified, so they run against the same knowledge base and reasoning logic
-as the Flask app.
-
-### Automated tests (`tests/test_finance_advisor.py`)
-Covers knowledge base loading, derived-fact calculations (total income,
-debt-to-income ratio, emergency fund target), and inference/recommendation
-generation. Run with:
-```bash
-python -m unittest discover -s tests -v
+```
+financial-recommendations-using-rule-based-reasoning/
+│
+├── app.py
+├── financialCalculator.py
+├── inferenceEngine.py
+├── knowledgeBase.py
+├── knowledge.json
+├── requirements.txt
+│
+├── templates/
+│   ├── base.html
+│   ├── assessment.html
+│   ├── chat.html
+│   └── results.html
+│
+└── static/
+    └── css/
+        ├── base.css
+        ├── assessment.css
+        ├── chat.css
+        └── results.css
 ```
 
-### CLI interface (`cli.py`)
-A second, terminal-based way to use the same engine as the Flask app —
-useful for quick checks without starting the web server. Also adds an
-**explanation facility**: after getting recommendations, choose to see
-the explanation trace, which lists every inference and recommendation
-rule that fired along with the exact fact values that satisfied it
-(`IF <condition, with real values> THEN <conclusion>`).
+## Setup Instructions
+
+### 1. Clone the repository
+
 ```bash
-python cli.py
+git clone https://github.com/eaMwanika/financial-recommendations-using-rule-based-reasoning
+cd financial-recommendations-using-rule-based-reasoning
 ```
 
-### Knowledge acquisition tool (`add_rule.py`)
-`knowledge.json` previously could only be extended by hand-editing the
-file. This script walks through adding a new inference rule or
-recommendation rule (fields, operator, comparison value or field,
-resulting fact/message) and saves it back to `knowledge.json`, so the
-knowledge base can grow without directly editing JSON.
+### 2. Create a virtual environment
+
 ```bash
-python add_rule.py
+python -m venv venv
 ```
+
+### 3. Activate the environment
+
+**Windows**
+
+```bash
+venv\Scripts\activate
+```
+
+**Linux / macOS**
+
+```bash
+source venv/bin/activate
+```
+
+### 4. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Run the application
+
+```bash
+python app.py
+```
+
+Open `http://127.0.0.1:5000` in your browser.
+
+## Example Chat Input
+
+> I am a student. I receive 15,000 allowance, earn 10,000 salary, spend 18,000, have no debt, keep 20,000 in savings, and prefer low risk investments.
+
+The system extracts the financial facts, evaluates them using the expert system, and displays a personalized financial report.
+
+## Key HCI Considerations
+
+- Progressive disclosure through step-by-step assessment
+- Clear visual hierarchy and consistent card layout
+- Error prevention through input validation
+- Alternative interaction style through conversational assessment
+- Immediate feedback via review and results pages
+
+## Screenshots
+
+### Assessment Wizard
+
+![Assessment Wizard](screenshots/01-home.png)
+
+### Financial Inputs
+
+![Review Page](screenshots/04-review-step.png)
+
+### Financial Results
+
+![Results](screenshots/05-results-summary.png)
+
+### Recommendations Results
+
+![Results](screenshots/06-recommendations.png)
+
+### Chat with Advisor
+
+![Chat Page](screenshots/08-chat-page.png)
+
+## Author
+
+** APT3020 Summer 2026 Group **
+
+Software Engineering Student's
+
+USIU-Africa

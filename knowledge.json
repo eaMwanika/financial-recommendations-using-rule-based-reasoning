@@ -104,7 +104,17 @@
 
     "benefit": "Higher savings improve your ability to manage emergencies and invest in future opportunities."
 
+},
+"continue_investing": {
+  "title": "Continue Investing Consistently",
+
+  "summary": "Maintain your current investment discipline and continue investing regularly.",
+
+  "explanation": "Your budget is healthy, debt is manageable, and your emergency fund is in a good position. Consistent investing supports long-term wealth creation.",
+
+  "benefit": "Staying invested and contributing regularly helps compound returns over time and supports your long-term financial goals."
 }
+
 
 
 },
@@ -213,6 +223,17 @@
 
     ]
 
+},
+"continue_investing": {
+  "priority": 5,
+  "title": "Investment Continuation Plan",
+  "objective": "Maintain long-term investment growth through consistent investing.",
+  "steps": [
+    "Continue making regular investment contributions.",
+    "Review your portfolio at least once or twice a year.",
+    "Keep your emergency fund intact before increasing investment contributions.",
+    "Adjust your asset allocation only when your goals or risk tolerance change."
+  ]
 }
 
 },
@@ -489,6 +510,36 @@
     ]
   },
   {
+  "id": "R009B",
+  "description": "Client with adequate emergency savings is financially ready to invest.",
+  "priority": 2,
+  "conditions": [
+    {
+      "field": "budget_status",
+      "operator": "==",
+      "operand": "healthy"
+    },
+    {
+      "field": "debt_burden",
+      "operator": "==",
+      "operand": "low"
+    },
+    {
+      "field": "emergency_status",
+      "operator": "==",
+      "operand": "adequate"
+    }
+  ],
+  "actions": [
+    {
+      "type": "derive_fact",
+      "fact": "investment_ready",
+      "value": true
+    }
+  ]
+},
+
+  {
     "id": "R010",
     "description": "Client is not financially ready to invest.",
     "priority": 2,
@@ -584,6 +635,11 @@
         "field": "investment_ready",
         "operator": "==",
         "operand": true
+      },
+      {
+        "field": "currently_investing",
+        "operator": "==",
+        "operand": false
       }
     ],
     "actions": [
@@ -646,7 +702,7 @@
     "actions": [
       {
         "type": "investment_guidance",
-        "value": "low"
+        "value": "conservative"
       }
     ]
   },
@@ -669,7 +725,7 @@
     "actions": [
       {
         "type": "investment_guidance",
-        "value": "medium"
+        "value": "moderate"
       }
     ]
   },
@@ -692,24 +748,52 @@
     "actions": [
       {
         "type": "investment_guidance",
-        "value": "high"
+        "value": "aggressive"
       }
     ]
-  }
+  },
+  {
+  "id": "R021",
+  "description": "Encourage financially healthy users who already invest to continue investing.",
+  "priority": 3,
+  "conditions": [
+    {
+      "field": "budget_status",
+      "operator": "==",
+      "operand": "healthy"
+    },
+    {
+      "field": "debt_burden",
+      "operator": "==",
+      "operand": "low"
+    },
+    {
+      "field": "currently_investing",
+      "operator": "==",
+      "operand": true
+    },
+    {
+      "field": "dividends",
+      "operator": ">",
+      "operand": 0
+    }
+  ],
+  "actions": [
+    {
+      "type": "recommendation",
+      "value": "continue_investing"
+    },
+    {
+      "type": "action_plan",
+      "value": "continue_investing"
+    }
+  ]
+}
   
-
-
 ]
 
 
-
-
-
-
 }
-
-
-
 
 
 

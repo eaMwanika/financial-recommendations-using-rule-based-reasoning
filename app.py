@@ -47,9 +47,16 @@ def chat_assessment():
     expenses  = extract_amount(r'(?:spend|expenses)[^\d]*(\d[\d,]*)', text)
     debt      = extract_amount(r'debt[^\d]*(\d[\d,]*)', text)
     savings   = extract_amount(r'(?:savings|emergency)[^\d]*(\d[\d,]*)', text)
+    dividends = extract_amount(r'dividends?[^\d]*(\d[\d,]*)', text)
 
     
     earned_income = allowance + salary + business
+    
+    dividends = extract_amount(r'dividends?[^\d]*(\d[\d,]*)', text)
+
+    currently_investing = dividends > 0
+    
+    
 
     risk = 'low'
 
@@ -58,18 +65,24 @@ def chat_assessment():
 
     elif 'high risk' in text or 'aggressive' in text:
         risk = 'high'
+        
 
     calculator = FinancialCalculator()
 
     facts = calculator.prepare_facts(
         earned_income=earned_income,
         passive_income=0,
-        dividends=0,
+        dividends=dividends,
         interest=0,
         expenses=expenses,
         monthly_debt_payments=debt,
         emergency_fund=savings,
-        risk_preference=risk
+        risk_preference=risk,
+        currently_investing=currently_investing
+        
+        
+        
+        
     )
 
     kb = KnowledgeBase('knowledge.json')
@@ -90,7 +103,7 @@ def results():
 
 
 
-    # ===== Form data =====
+    #  Form data 
     earned_income = float(request.form.get('earned_income', 0))
     passive_income = float(request.form.get('passive_income', 0))
     expenses = float(request.form.get('expenses', 0))
@@ -98,11 +111,12 @@ def results():
     emergency_fund = float(request.form.get('emergency_fund', 0))
     risk_preference = request.form.get('risk_preference', 'low')
     dividends = float(request.form.get('dividends', 0))
+    currently_investing = request.form.get('currently_investing', 'no') == 'yes'
 
     # Not collected yet in the wizard
     interest = 0
 
-    # ===== Financial calculations =====
+    #  Financial calculations =====
     facts = calculator.prepare_facts(
         earned_income=earned_income,
         passive_income=passive_income,
@@ -111,10 +125,11 @@ def results():
         expenses=expenses,
         monthly_debt_payments=monthly_debt_payments,
         emergency_fund=emergency_fund,
-        risk_preference=risk_preference
+        risk_preference=risk_preference,
+        currently_investing=currently_investing
     )
 
-    # ===== Expert system inference =====
+    #  Expert system inference 
     results_data = engine.infer(facts)
 
     return render_template('results.html', data=results_data)
