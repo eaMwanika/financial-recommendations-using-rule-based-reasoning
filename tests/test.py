@@ -23,6 +23,5 @@ facts = {
 results = engine.infer(facts)
 
 print("\nFinal Working Memory")
-print("--------------------")
 for key, value in results.items():
     print(f"{key}: {value}")
